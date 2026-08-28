@@ -1,0 +1,5 @@
+[     555ms] [INFO] [HotReload] Connected @ http://127.0.0.1:9292/cdn/shopifycloud/theme-hot-reload/theme-hot-reload.js:299
+[     680ms] [VERBOSE] Rendering was performed in a subtree hidden by content-visibility. @ :3393
+[    1116ms] [VERBOSE] Rendering was performed in a subtree hidden by content-visibility. @ https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/chunk.colors_Cs7EgwvK.esm.js:0
+[    1141ms] [VERBOSE] Rendering was performed in a subtree hidden by content-visibility. @ https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/chunk.index_DIHToUGc.esm.js:0
+[    1447ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://shop.app/accounts/pre_auth?client_id=bf95cb68-c351-4719-92fe-508d4aad700b&analytics_trace_id=e4562435-12ba-41ea-990c-fd0fdd79c24e&flow=embed&flow_version=account_menu&target_origin=http%3A%2F%2F127.0.0.1%3A9292&storefront_domain=https%3A%2F%2Ffutprov-store.myshopify.com&scope=openid+email%3Averified+pay%3Asession_token+profile+shop%3Aaccount_uuid&locale=es:0

@@ -1,0 +1,80 @@
+{{ 'futprov.css' | asset_url | stylesheet_tag }}
+
+<div class="fp-section color-{{ section.settings.color_scheme }} page-width section-{{ section.id }}-padding">
+  {%- if section.settings.heading != blank -%}
+    <h2 class="title{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      {{ section.settings.heading }}
+    </h2>
+  {%- endif -%}
+
+  <div class="fp-bento">
+    {%- for block in section.blocks -%}
+      <a
+        href="#fp-catalog"
+        class="fp-bento__item{% if forloop.first %} fp-bento__item--big{% endif %}"
+        data-fp-goto-league="{{ block.settings.league_filter }}"
+        {{ block.shopify_attributes }}
+      >
+        {%- if block.settings.image_url != blank -%}
+          <img
+            src="{{ block.settings.image_url }}"
+            alt=""
+            loading="lazy"
+            decoding="async"
+            width="900"
+            height="900"
+            onerror="this.style.display='none'"
+          >
+        {%- endif -%}
+        <span class="fp-bento__label">
+          <strong>{{ block.settings.label }}</strong>
+          <span>{{ block.settings.sublabel }}</span>
+        </span>
+      </a>
+    {%- endfor -%}
+  </div>
+</div>
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+{%- endstyle -%}
+
+{% schema %}
+{
+  "name": "Fut Prov · Ligas",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Título", "default": "Explora por liga" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:sections.all.colors.label", "default": "scheme-1" }
+  ],
+  "blocks": [
+    {
+      "type": "league",
+      "name": "Liga",
+      "settings": [
+        { "type": "url", "id": "image_url", "label": "Imagen (URL)" },
+        { "type": "text", "id": "label", "label": "Nombre", "default": "LaLiga" },
+        { "type": "text", "id": "sublabel", "label": "Descripción", "default": "26-27 · Todos los equipos" },
+        { "type": "text", "id": "league_filter", "label": "Filtro del catálogo (debe coincidir con la liga)", "default": "LaLiga" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fut Prov · Ligas",
+      "blocks": [
+        { "type": "league", "settings": { "label": "LaLiga", "sublabel": "26-27 · Todos los equipos", "league_filter": "LaLiga", "image_url": "https://cdn.shopify.com/s/files/1/0896/7621/8701/files/ChatGPTImage15ago2026_20_44_58.png?v=1786819511" } },
+        { "type": "league", "settings": { "label": "Premier League", "sublabel": "26-27 · Todos los equipos", "league_filter": "Premier League", "image_url": "https://cdn.shopify.com/s/files/1/0896/7621/8701/files/21136578.jpg?v=1785347064" } },
+        { "type": "league", "settings": { "label": "Retro", "sublabel": "Clásicos históricos", "league_filter": "Retro", "image_url": "https://cdn.shopify.com/s/files/1/0896/7621/8701/files/brasil_1_1.jpg?v=1763660488" } },
+        { "type": "league", "settings": { "label": "Selecciones", "sublabel": "Mundial y Eurocopa", "league_filter": "Selecciones", "image_url": "https://cdn.shopify.com/s/files/1/0896/7621/8701/files/2350f6fc.jpg?v=1775594935" } },
+        { "type": "league", "settings": { "label": "Mujer", "sublabel": "Tallas femeninas", "league_filter": "Mujer", "image_url": "https://cdn.shopify.com/s/files/1/0896/7621/8701/files/topmad.png?v=1768236126" } },
+        { "type": "league", "settings": { "label": "Niños", "sublabel": "Tallas infantiles", "league_filter": "Niños", "image_url": "https://cdn.shopify.com/s/files/1/0896/7621/8701/files/9b181039.jpg?v=1768312713" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

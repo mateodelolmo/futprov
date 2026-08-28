@@ -19,14 +19,6 @@
             "text_style": "uppercase"
           }
         },
-        "text_n8hcae": {
-          "type": "text",
-          "disabled": true,
-          "settings": {
-            "text": "💶 Precios por unidad<strong>Camisetas manga corta</strong>Fan version (manga corta): <strong>7,50 €</strong>Player version (ajuste jugador): <strong>10 €</strong>Camiseta retro (manga corta): <strong>11 €Camisetas manga larga</strong>Retro manga larga: <strong>12 €</strong>Normal manga larga: <strong>12 €</strong>✏️ PersonalizaciónParches: <strong>+1 €</strong>Número y nombre: <strong>+1 €</strong>",
-            "text_style": "body"
-          }
-        },
         "title": {
           "type": "title",
           "settings": {}
@@ -60,13 +52,12 @@
         "share": {
           "type": "share",
           "settings": {
-            "share_label": "Share"
+            "share_label": "Compartir"
           }
         }
       },
       "block_order": [
         "vendor",
-        "text_n8hcae",
         "title",
         "price",
         "variant_picker",
@@ -105,7 +96,7 @@
     "related-products": {
       "type": "related-products",
       "settings": {
-        "heading": "You may also like",
+        "heading": "También te puede interesar",
         "heading_size": "h2",
         "products_to_show": 4,
         "columns_desktop": 4,

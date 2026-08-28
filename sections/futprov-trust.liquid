@@ -1,0 +1,51 @@
+{{ 'futprov.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'futprov.js' | asset_url }}" defer="defer"></script>
+
+<div class="fp-section color-{{ section.settings.color_scheme }} page-width section-{{ section.id }}-padding">
+  <div class="fp-trust">
+    {%- for block in section.blocks -%}
+      <div class="fp-trust__item" {{ block.shopify_attributes }}>
+        <div class="fp-trust__num" data-fp-counter="{{ block.settings.number }}">0</div>
+        <p>{{ block.settings.label }}</p>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+{%- endstyle -%}
+
+{% schema %}
+{
+  "name": "Fut Prov · Confianza",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:sections.all.colors.label", "default": "scheme-1" }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Estadística",
+      "settings": [
+        { "type": "number", "id": "number", "label": "Número" },
+        { "type": "text", "id": "label", "label": "Etiqueta" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fut Prov · Confianza",
+      "blocks": [
+        { "type": "stat", "settings": { "number": 350, "label": "camisetas en catálogo" } },
+        { "type": "stat", "settings": { "number": 12, "label": "ligas y selecciones" } },
+        { "type": "stat", "settings": { "number": 5, "label": "envío gratis a partir de" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

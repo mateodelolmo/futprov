@@ -1,0 +1,78 @@
+{{ 'futprov.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'futprov.js' | asset_url }}" defer="defer"></script>
+
+<div class="fp-section fp-hero color-{{ section.settings.color_scheme }}" id="fp-hero-{{ section.id }}">
+  {%- if section.settings.background_image != blank -%}
+    <div class="fp-hero__bg" data-fp-parallax>
+      {{
+        section.settings.background_image
+        | image_url: width: 2000
+        | image_tag: loading: 'eager', fetchpriority: 'high', sizes: '100vw', widths: '750,1100,1500,2000'
+      }}
+    </div>
+  {%- endif -%}
+
+  <div class="page-width">
+    <div class="fp-hero__content" data-fp-inview>
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="fp-hero__eyebrow">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+
+      {%- if section.settings.heading != blank -%}
+        {%- assign heading_lines = section.settings.heading | newline_to_br | split: '<br />' -%}
+        <h1 class="fp-hero__title">
+          {%- for line in heading_lines -%}
+            <span>{{ line }}</span>
+          {%- endfor -%}
+        </h1>
+      {%- endif -%}
+
+      {%- if section.settings.subheading != blank -%}
+        <p class="fp-hero__subtitle">{{ section.settings.subheading }}</p>
+      {%- endif -%}
+
+      <div class="fp-hero__ctas">
+        {%- if section.settings.primary_label != blank -%}
+          <a href="{{ section.settings.primary_link }}" class="button">{{ section.settings.primary_label }}</a>
+        {%- endif -%}
+        {%- if section.settings.secondary_label != blank -%}
+          <a href="{{ section.settings.secondary_link }}" class="button button--secondary">{{ section.settings.secondary_label }}</a>
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- if section.settings.marquee_text != blank -%}
+      <div class="fp-marquee">
+        <div class="fp-marquee__track" aria-hidden="true">
+          {%- assign items = section.settings.marquee_text | split: ',' -%}
+          {%- for i in (1..2) -%}
+            {%- for item in items -%}
+              <span>{{ item | strip }}</span>
+            {%- endfor -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Fut Prov · Hero",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "image_picker", "id": "background_image", "label": "Imagen de fondo" },
+    { "type": "text", "id": "eyebrow", "label": "Texto pequeño superior", "default": "Catálogo del proveedor" },
+    { "type": "textarea", "id": "heading", "label": "Titular (una línea por salto)", "default": "CAMISETAS\nPERSONALIZADAS" },
+    { "type": "textarea", "id": "subheading", "label": "Subtítulo", "default": "Elige tu camiseta, personalízala con nombre y dorsal, y la recibimos en casa lista para jugar." },
+    { "type": "text", "id": "primary_label", "label": "Botón principal", "default": "Ver catálogo" },
+    { "type": "url", "id": "primary_link", "label": "Enlace botón principal" },
+    { "type": "text", "id": "secondary_label", "label": "Botón secundario", "default": "Conseguir acceso · 9,99€" },
+    { "type": "url", "id": "secondary_link", "label": "Enlace botón secundario" },
+    { "type": "text", "id": "marquee_text", "label": "Ligas (separadas por coma)", "default": "LaLiga, Premier League, Bundesliga, Ligue 1, Retro, Selecciones" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:sections.all.colors.label", "default": "scheme-4" }
+  ],
+  "presets": [{ "name": "Fut Prov · Hero" }]
+}
+{% endschema %}

@@ -1,0 +1,60 @@
+{{ 'futprov.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'futprov.js' | asset_url }}" defer="defer"></script>
+
+<div class="fp-section color-{{ section.settings.color_scheme }} page-width section-{{ section.id }}-padding">
+  {%- if section.settings.heading != blank -%}
+    <h2 class="title{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      {{ section.settings.heading }}
+    </h2>
+  {%- endif -%}
+
+  <div class="fp-steps" data-fp-inview>
+    <div class="fp-steps__line"><div class="fp-steps__line-fill"></div></div>
+    {%- for block in section.blocks -%}
+      <div class="fp-step" {{ block.shopify_attributes }}>
+        <div class="fp-step__num">{{ forloop.index }}</div>
+        <h3>{{ block.settings.title }}</h3>
+        <p>{{ block.settings.text }}</p>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+{%- endstyle -%}
+
+{% schema %}
+{
+  "name": "Fut Prov · Cómo funciona",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Título", "default": "Cómo funciona" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:sections.all.colors.label", "default": "scheme-2" }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Paso",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Título" },
+        { "type": "textarea", "id": "text", "label": "Texto" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fut Prov · Cómo funciona",
+      "blocks": [
+        { "type": "step", "settings": { "title": "Elige tu camiseta", "text": "Recorre el catálogo y encuentra el equipo, la temporada y la equipación que quieres." } },
+        { "type": "step", "settings": { "title": "Personalízala", "text": "Añade nombre, dorsal y parches. Cada camiseta se prepara a tu medida." } },
+        { "type": "step", "settings": { "title": "Recíbela en casa", "text": "Gestionamos el pedido con el proveedor y te llega lista para jugar." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,316 @@
+- generic [active] [ref=f39e1]:
+  - link "Ir directamente al contenido" [ref=f39e2] [cursor=pointer]:
+    - /url: "#MainContent"
+  - region "Anuncio" [ref=f39e6]:
+    - paragraph [ref=f39e7]: TODAS LAS CAMISETAS
+  - banner [ref=f39e10]:
+    - heading [level=1] [ref=f39e11]:
+      - link "Fut Prov" [ref=f39e12] [cursor=pointer]:
+        - /url: /
+    - navigation [ref=f39e13]:
+      - list [ref=f39e14]:
+        - listitem [ref=f39e15]:
+          - link "Inicio" [ref=f39e16] [cursor=pointer]:
+            - /url: /
+        - listitem [ref=f39e18]:
+          - link "Catálogo" [ref=f39e19] [cursor=pointer]:
+            - /url: /collections/all
+        - listitem [ref=f39e21]:
+          - link "Contacto" [ref=f39e22] [cursor=pointer]:
+            - /url: /pages/contact
+    - generic [ref=f39e24]:
+      - generic [ref=f39e28]:
+        - heading "País/región" [level=2] [ref=f39e29]
+        - button "España | EUR €" [ref=f39e31] [cursor=pointer]
+      - group [ref=f39e36]:
+        - button "Búsqueda" [ref=f39e37] [cursor=pointer]
+      - button "Cuenta" [ref=f39e45] [cursor=pointer]:
+        - generic: Iniciar sesión
+      - link "Carrito" [ref=f39e50] [cursor=pointer]:
+        - /url: /cart
+  - main [ref=f39e55]:
+    - generic [ref=f39e59]:
+      - generic [ref=f39e60]:
+        - generic [ref=f39e61]: Catálogo del proveedor
+        - heading "CAMISETAS PERSONALIZADAS" [level=1] [ref=f39e62]:
+          - generic [ref=f39e63]: CAMISETAS
+          - generic [ref=f39e64]: PERSONALIZADAS
+        - paragraph [ref=f39e65]: Elige tu camiseta, personalízala con nombre y dorsal, y la recibimos en casa lista para jugar.
+        - generic [ref=f39e66]:
+          - link "Ver catálogo" [ref=f39e67] [cursor=pointer]:
+            - /url: "#fp-catalog"
+          - link "Conseguir acceso · 9,99€" [ref=f39e68] [cursor=pointer]:
+            - /url: /products/guia-digital-pdf
+      - generic [ref=f39e70]:
+        - generic [ref=f39e71]: LaLiga
+        - generic [ref=f39e72]: Premier League
+        - generic [ref=f39e73]: Bundesliga
+        - generic [ref=f39e74]: Ligue 1
+        - generic [ref=f39e75]: Retro
+        - generic [ref=f39e76]: Selecciones
+        - generic [ref=f39e77]: LaLiga
+        - generic [ref=f39e78]: Premier League
+        - generic [ref=f39e79]: Bundesliga
+        - generic [ref=f39e80]: Ligue 1
+        - generic [ref=f39e81]: Retro
+        - generic [ref=f39e82]: Selecciones
+    - generic [ref=f39e84]:
+      - heading "Explora por liga" [level=2] [ref=f39e85]
+      - generic [ref=f39e86]:
+        - link [ref=f39e87] [cursor=pointer]:
+          - /url: "#fp-catalog"
+          - generic [ref=f39e88]:
+            - strong [ref=f39e89]: LaLiga
+            - text: 26-27 · Todos los equipos
+        - link [ref=f39e90] [cursor=pointer]:
+          - /url: "#fp-catalog"
+          - generic [ref=f39e91]:
+            - strong [ref=f39e92]: Premier League
+            - text: 26-27 · Todos los equipos
+        - link [ref=f39e93] [cursor=pointer]:
+          - /url: "#fp-catalog"
+          - generic [ref=f39e94]:
+            - strong [ref=f39e95]: Retro
+            - text: Clásicos históricos
+        - link [ref=f39e96] [cursor=pointer]:
+          - /url: "#fp-catalog"
+          - generic [ref=f39e97]:
+            - strong [ref=f39e98]: Selecciones
+            - text: Mundial y Eurocopa
+        - link [ref=f39e99] [cursor=pointer]:
+          - /url: "#fp-catalog"
+          - generic [ref=f39e100]:
+            - strong [ref=f39e101]: Mujer
+            - text: Tallas femeninas
+        - link [ref=f39e102] [cursor=pointer]:
+          - /url: "#fp-catalog"
+          - generic [ref=f39e103]:
+            - strong [ref=f39e104]: Niños
+            - text: Tallas infantiles
+    - generic [ref=f39e106]:
+      - heading "Todo lo que puedes conseguir" [level=2] [ref=f39e107]
+      - paragraph [ref=f39e108]: Muestra del catálogo disponible a través de nuestro proveedor. Este escaparate no es comprable directamente — consigue el acceso completo con la guía digital.
+      - generic [ref=f39e109]:
+        - searchbox "Buscar equipo" [ref=f39e110]
+        - group "Filtrar por liga" [ref=f39e111]:
+          - button "Todos" [pressed] [ref=f39e112] [cursor=pointer]
+          - button "LaLiga" [ref=f39e113] [cursor=pointer]
+          - button "Premier League" [ref=f39e114] [cursor=pointer]
+          - button "Bundesliga" [ref=f39e115] [cursor=pointer]
+          - button "Ligue 1" [ref=f39e116] [cursor=pointer]
+          - button "Retro" [ref=f39e117] [cursor=pointer]
+          - button "Selecciones" [ref=f39e118] [cursor=pointer]
+          - button "Mujer" [ref=f39e119] [cursor=pointer]
+          - button "Niños" [ref=f39e120] [cursor=pointer]
+          - button "Chándal" [ref=f39e121] [cursor=pointer]
+          - button "Balones" [ref=f39e122] [cursor=pointer]
+          - button "Destacados" [ref=f39e123] [cursor=pointer]
+      - generic [ref=f39e124]:
+        - link "26-27 Barcelona primera equipación LaLiga" [ref=f39e125] [cursor=pointer]:
+          - /url: /products/guia-digital-pdf
+          - generic [ref=f39e127]:
+            - generic [ref=f39e128]: 26-27 Barcelona primera equipación
+            - generic [ref=f39e129]: LaLiga
+        - link "26-27 Real Madrid primera equipación LaLiga" [ref=f39e130] [cursor=pointer]:
+          - /url: /products/guia-digital-pdf
+          - generic [ref=f39e132]:
+            - generic [ref=f39e133]: 26-27 Real Madrid primera equipación
+            - generic [ref=f39e134]: LaLiga
+        - link "26-27 Barcelona segunda equipación LaLiga" [ref=f39e135] [cursor=pointer]:
+          - /url: /products/guia-digital-pdf
+          - generic [ref=f39e137]:
+            - generic [ref=f39e138]: 26-27 Barcelona segunda equipación
+            - generic [ref=f39e139]: LaLiga
+        - link "26-27 Real Madrid primera equipación niño LaLiga" [ref=f39e140] [cursor=pointer]:
+          - /url: /products/guia-digital-pdf
+          - generic [ref=f39e142]:
+            - generic [ref=f39e143]: 26-27 Real Madrid primera equipación niño
+            - generic [ref=f39e144]: LaLiga
+        - link "26-27 Barcelona primera equipación niño LaLiga" [ref=f39e145] [cursor=pointer]:
+          - /url: /products/guia-digital-pdf
+          - generic [ref=f39e147]:
+            - generic [ref=f39e148]: 26-27 Barcelona primera equipación niño
+            - generic [ref=f39e149]: LaLiga
+        - link "26-27 Real Madrid segunda equipación LaLiga" [ref=f39e150] [cursor=pointer]:
+          - /url: /products/guia-digital-pdf
+          - generic [ref=f39e152]:
+            - generic [ref=f39e153]: 26-27 Real Madrid segunda equipación
+            - generic [ref=f39e154]: LaLiga
+        - link "26-27 Real Madrid tercera equipación LaLiga" [ref=f39e155] [cursor=pointer]:
+          - /url: /products/guia-digital-pdf
+          - generic [ref=f39e157]:
+            - generic [ref=f39e158]: 26-27 Real Madrid tercera equipación
+            - generic [ref=f39e159]: LaLiga
+        - link "26-27 Betis segunda equipación LaLiga" [ref=f39e160] [cursor=pointer]:
+          - /url: /products/guia-digital-pdf
+          - generic [ref=f39e162]:
+            - generic [ref=f39e163]: 26-27 Betis segunda equipación
+            - generic [ref=f39e164]: LaLiga
+        - link "26-27 Real Madrid primera equipación mujer LaLiga" [ref=f39e165] [cursor=pointer]:
+          - /url: /products/guia-digital-pdf
+          - generic [ref=f39e167]:
+            - generic [ref=f39e168]: 26-27 Real Madrid primera equipación mujer
+            - generic [ref=f39e169]: LaLiga
+        - link "26-27 Atlético de Madrid primera equipación niño LaLiga" [ref=f39e170] [cursor=pointer]:
+          - /url: /products/guia-digital-pdf
+          - generic [ref=f39e172]:
+            - generic [ref=f39e173]: 26-27 Atlético de Madrid primera equipación niño
+            - generic [ref=f39e174]: LaLiga
+        - link "26-27 Atlético de Madrid primera equipación LaLiga" [ref=f39e175] [cursor=pointer]:
+          - /url: /products/guia-digital-pdf
+          - generic [ref=f39e177]:
+            - generic [ref=f39e178]: 26-27 Atlético de Madrid primera equipación
+            - generic [ref=f39e179]: LaLiga
+        - link "26-27 Barcelona tercera equipación LaLiga" [ref=f39e180] [cursor=pointer]:
+          - /url: /products/guia-digital-pdf
+          - generic [ref=f39e182]:
+            - generic [ref=f39e183]: 26-27 Barcelona tercera equipación
+            - generic [ref=f39e184]: LaLiga
+        - link "26-27 Real Madrid segunda equipación manga larga LaLiga" [ref=f39e185] [cursor=pointer]:
+          - /url: /products/guia-digital-pdf
+          - generic [ref=f39e187]:
+            - generic [ref=f39e188]: 26-27 Real Madrid segunda equipación manga larga
+            - generic [ref=f39e189]: LaLiga
+        - link "26-27 Betis primera equipación LaLiga" [ref=f39e190] [cursor=pointer]:
+          - /url: /products/guia-digital-pdf
+          - generic [ref=f39e192]:
+            - generic [ref=f39e193]: 26-27 Betis primera equipación
+            - generic [ref=f39e194]: LaLiga
+        - link "26-27 Málaga primera equipación LaLiga" [ref=f39e195] [cursor=pointer]:
+          - /url: /products/guia-digital-pdf
+          - generic [ref=f39e197]:
+            - generic [ref=f39e198]: 26-27 Málaga primera equipación
+            - generic [ref=f39e199]: LaLiga
+        - link "26-27 Cádiz primera equipación LaLiga" [ref=f39e200] [cursor=pointer]:
+          - /url: /products/guia-digital-pdf
+          - generic [ref=f39e202]:
+            - generic [ref=f39e203]: 26-27 Cádiz primera equipación
+            - generic [ref=f39e204]: LaLiga
+        - link "26-27 Barcelona segunda equipación manga larga LaLiga" [ref=f39e205] [cursor=pointer]:
+          - /url: /products/guia-digital-pdf
+          - generic [ref=f39e207]:
+            - generic [ref=f39e208]: 26-27 Barcelona segunda equipación manga larga
+            - generic [ref=f39e209]: LaLiga
+        - link "26-27 Valencia tercera equipación LaLiga" [ref=f39e210] [cursor=pointer]:
+          - /url: /products/guia-digital-pdf
+          - generic [ref=f39e212]:
+            - generic [ref=f39e213]: 26-27 Valencia tercera equipación
+            - generic [ref=f39e214]: LaLiga
+        - link "26-27 Real Madrid segunda equipación niño LaLiga" [ref=f39e215] [cursor=pointer]:
+          - /url: /products/guia-digital-pdf
+          - generic [ref=f39e217]:
+            - generic [ref=f39e218]: 26-27 Real Madrid segunda equipación niño
+            - generic [ref=f39e219]: LaLiga
+        - link "26-27 Real Madrid tercera equipación niño LaLiga" [ref=f39e220] [cursor=pointer]:
+          - /url: /products/guia-digital-pdf
+          - generic [ref=f39e222]:
+            - generic [ref=f39e223]: 26-27 Real Madrid tercera equipación niño
+            - generic [ref=f39e224]: LaLiga
+        - link "26-27 Real Madrid Portero primera equipación LaLiga" [ref=f39e225] [cursor=pointer]:
+          - /url: /products/guia-digital-pdf
+          - generic [ref=f39e227]:
+            - generic [ref=f39e228]: 26-27 Real Madrid Portero primera equipación
+            - generic [ref=f39e229]: LaLiga
+        - link "26-27 Barcelona primera equipación mujer LaLiga" [ref=f39e230] [cursor=pointer]:
+          - /url: /products/guia-digital-pdf
+          - generic [ref=f39e232]:
+            - generic [ref=f39e233]: 26-27 Barcelona primera equipación mujer
+            - generic [ref=f39e234]: LaLiga
+        - link "26-27 Barcelona tercera equipación mujer LaLiga" [ref=f39e235] [cursor=pointer]:
+          - /url: /products/guia-digital-pdf
+          - generic [ref=f39e237]:
+            - generic [ref=f39e238]: 26-27 Barcelona tercera equipación mujer
+            - generic [ref=f39e239]: LaLiga
+        - link "26-27 Barcelona equipación Pre Partido LaLiga" [ref=f39e240] [cursor=pointer]:
+          - /url: /products/guia-digital-pdf
+          - generic [ref=f39e242]:
+            - generic [ref=f39e243]: 26-27 Barcelona equipación Pre Partido
+            - generic [ref=f39e244]: LaLiga
+      - button "Cargar más" [ref=f39e246] [cursor=pointer]
+    - generic [ref=f39e248]:
+      - heading "Cómo funciona" [level=2] [ref=f39e249]
+      - generic [ref=f39e250]:
+        - generic [ref=f39e252]:
+          - generic [ref=f39e253]: "1"
+          - heading "Elige tu camiseta" [level=3] [ref=f39e254]
+          - paragraph [ref=f39e255]: Recorre el catálogo y encuentra el equipo, la temporada y la equipación que quieres.
+        - generic [ref=f39e256]:
+          - generic [ref=f39e257]: "2"
+          - heading "Personalízala" [level=3] [ref=f39e258]
+          - paragraph [ref=f39e259]: Añade nombre, dorsal y parches. Cada camiseta se prepara a tu medida.
+        - generic [ref=f39e260]:
+          - generic [ref=f39e261]: "3"
+          - heading "Recíbela en casa" [level=3] [ref=f39e262]
+          - paragraph [ref=f39e263]: Gestionamos el pedido con el proveedor y te llega lista para jugar.
+    - generic [ref=f39e266]:
+      - generic [ref=f39e267]:
+        - generic [ref=f39e268]: "0"
+        - paragraph [ref=f39e269]: camisetas en catálogo
+      - generic [ref=f39e270]:
+        - generic [ref=f39e271]: "0"
+        - paragraph [ref=f39e272]: ligas y selecciones
+      - generic [ref=f39e273]:
+        - generic [ref=f39e274]: "0"
+        - paragraph [ref=f39e275]: envío gratis a partir de
+    - generic [ref=f39e280]:
+      - heading "Tu nombre, tu dorsal, tu camiseta" [level=2] [ref=f39e281]
+      - paragraph [ref=f39e282]: Servicio de personalización sobre camisetas originales. Consigue acceso completo al catálogo del proveedor con la guía digital.
+      - link "Empezar mi pedido · €9,99" [ref=f39e283] [cursor=pointer]:
+        - /url: /products/guia-digital-pdf
+  - contentinfo [ref=f39e285]:
+    - generic [ref=f39e288]:
+      - heading "Suscríbete a nuestras novedades" [level=2] [ref=f39e289]
+      - generic [ref=f39e292]:
+        - textbox "Correo electrónico" [ref=f39e293]
+        - generic: Correo electrónico
+        - button "Suscribirse" [ref=f39e294] [cursor=pointer]
+    - generic [ref=f39e298]:
+      - generic [ref=f39e299]:
+        - generic [ref=f39e303]:
+          - heading "País/región" [level=2] [ref=f39e304]
+          - button "España | EUR €" [ref=f39e306] [cursor=pointer]
+        - generic [ref=f39e311]:
+          - generic [ref=f39e312]: Formas de pago
+          - list [ref=f39e313]:
+            - listitem [ref=f39e314]:
+              - img "American Express" [ref=f39e315]
+            - listitem [ref=f39e320]:
+              - img "Apple Pay" [ref=f39e321]
+            - listitem [ref=f39e332]:
+              - img "Bancontact" [ref=f39e333]
+            - listitem [ref=f39e340]:
+              - img "BLIK" [ref=f39e341]
+            - listitem [ref=f39e348]:
+              - img "Google Pay" [ref=f39e349]
+            - listitem [ref=f39e357]:
+              - img "Klarna" [ref=f39e358]
+            - listitem [ref=f39e362]:
+              - img "Maestro" [ref=f39e363]
+            - listitem [ref=f39e369]:
+              - img "Mastercard" [ref=f39e370]
+            - listitem [ref=f39e377]:
+              - img "MobilePay" [ref=f39e378]
+            - listitem [ref=f39e384]:
+              - img "PayPal" [ref=f39e385]
+            - listitem [ref=f39e391]:
+              - img "Shop Pay" [ref=f39e392]
+            - listitem [ref=f39e396]:
+              - img "Union Pay" [ref=f39e397]
+            - listitem [ref=f39e403]:
+              - img "Visa" [ref=f39e404]
+      - generic [ref=f39e410]:
+        - generic [ref=f39e411]:
+          - text: © 2026,
+          - link "Fut Prov" [ref=f39e412] [cursor=pointer]:
+            - /url: /
+        - link "Tecnología de Shopify" [ref=f39e414] [cursor=pointer]:
+          - /url: http://es.shopify.com?utm_campaign=poweredby&utm_medium=shopify&utm_source=onlinestore
+        - list [ref=f39e415]:
+          - listitem [ref=f39e416]:
+            - text: ·
+            - link "Política de privacidad" [ref=f39e418] [cursor=pointer]:
+              - /url: /policies/privacy-policy
+          - listitem [ref=f39e419]:
+            - text: ·
+            - link "Preferencias de cookies" [ref=f39e421] [cursor=pointer]:
+              - /url: /policies/#shopifyReshowConsentBanner
