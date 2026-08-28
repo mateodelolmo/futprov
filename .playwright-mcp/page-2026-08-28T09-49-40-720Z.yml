@@ -1,7 +1,0 @@
-- alert [ref=e4]:
-  - generic [ref=e6]:
-    - heading "Upload Errors" [level=2] [ref=e16]
-    - generic [ref=e19]:
-      - text: templates/index.json
-      - list [ref=e20]:
-        - listitem [ref=e21]: El tipo de sección 'futprov-hero' no hace referencia a una sección de archivo existente
