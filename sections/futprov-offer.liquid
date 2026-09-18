@@ -1,0 +1,147 @@
+{{ 'futprov.css' | asset_url | stylesheet_tag }}
+
+{%- assign product = all_products[section.settings.product_handle] -%}
+
+<div class="fp-section color-{{ section.settings.color_scheme }} page-width section-{{ section.id }}-padding">
+  {%- if product != blank -%}
+    {%- assign has_discount = false -%}
+    {%- if product.compare_at_price > product.price -%}
+      {%- assign has_discount = true -%}
+      {%- assign discount_pct = product.compare_at_price
+        | minus: product.price
+        | times: 100.0
+        | divided_by: product.compare_at_price
+        | round
+      -%}
+    {%- endif -%}
+
+    <a href="{{ product.url }}" class="fp-offer{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      <div class="fp-offer__media">
+        {%- if has_discount -%}
+          <span class="fp-offer__badge">-{{ discount_pct }}%</span>
+        {%- endif -%}
+        {%- if product.featured_image -%}
+          {{
+            product.featured_image
+            | image_url: width: 700
+            | image_tag: loading: 'lazy', widths: '350,500,700', class: 'fp-offer__img'
+          }}
+        {%- endif -%}
+      </div>
+      <div class="fp-offer__body">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="fp-offer__eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        <h2 class="fp-offer__title">{{ section.settings.heading | default: product.title }}</h2>
+        {%- if section.settings.text != blank -%}
+          <p class="fp-offer__text">{{ section.settings.text }}</p>
+        {%- endif -%}
+        <div class="fp-offer__price">
+          {%- if has_discount -%}
+            <s class="fp-offer__compare">{{ product.compare_at_price | money }}</s>
+          {%- endif -%}
+          <span class="fp-offer__now">{{ product.price | money }}</span>
+        </div>
+        <span class="button button--full-width button--primary">{{ section.settings.button_label }}</span>
+      </div>
+    </a>
+  {%- endif -%}
+</div>
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  #shopify-section-{{ section.id }} .fp-offer {
+    display: block;
+    max-width: 42rem;
+    margin: 0 auto;
+    border-radius: 1.6rem;
+    overflow: hidden;
+    background: rgba(var(--color-foreground), 0.04);
+    border: 1px solid rgba(var(--color-foreground), 0.12);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  #shopify-section-{{ section.id }} .fp-offer:hover {
+    transform: translateY(-4px);
+    border-color: var(--fp-accent, #00a3e0);
+  }
+  #shopify-section-{{ section.id }} .fp-offer__media {
+    position: relative;
+    aspect-ratio: 4 / 3;
+  }
+  #shopify-section-{{ section.id }} .fp-offer__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  #shopify-section-{{ section.id }} .fp-offer__badge {
+    position: absolute;
+    top: 1.2rem;
+    left: 1.2rem;
+    background: #e11d2e;
+    color: #fff;
+    font-weight: 800;
+    font-size: 1.3rem;
+    padding: 0.4rem 1rem;
+    border-radius: 0.6rem;
+    z-index: 1;
+  }
+  #shopify-section-{{ section.id }} .fp-offer__body {
+    padding: 2rem 2.2rem 2.4rem;
+    text-align: center;
+  }
+  #shopify-section-{{ section.id }} .fp-offer__eyebrow {
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--fp-accent, #00a3e0);
+    margin: 0 0 0.6rem;
+  }
+  #shopify-section-{{ section.id }} .fp-offer__title {
+    margin: 0 0 0.8rem;
+    font-size: clamp(2rem, 3vw, 2.6rem);
+    font-weight: 900;
+  }
+  #shopify-section-{{ section.id }} .fp-offer__text {
+    margin: 0 0 1.6rem;
+    opacity: 0.75;
+    font-size: 1.4rem;
+  }
+  #shopify-section-{{ section.id }} .fp-offer__price {
+    margin-bottom: 1.6rem;
+    font-size: 2.2rem;
+    font-weight: 900;
+  }
+  #shopify-section-{{ section.id }} .fp-offer__compare {
+    opacity: 0.5;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-right: 0.8rem;
+  }
+  #shopify-section-{{ section.id }} .fp-offer__now {
+    color: var(--fp-accent, #00a3e0);
+  }
+{%- endstyle -%}
+
+{% schema %}
+{
+  "name": "Fut Prov · Oferta",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "product_handle", "label": "Handle del producto (contacto de proveedor)" },
+    { "type": "text", "id": "eyebrow", "label": "Etiqueta superior", "default": "Oferta especial" },
+    { "type": "text", "id": "heading", "label": "Título (vacío = nombre del producto)" },
+    { "type": "textarea", "id": "text", "label": "Texto", "default": "Accede a la lista completa de proveedores y pide cualquier camiseta del catálogo." },
+    { "type": "text", "id": "button_label", "label": "Texto del botón", "default": "Agregar al carrito" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:sections.all.colors.label", "default": "scheme-1" }
+  ],
+  "presets": [{ "name": "Fut Prov · Oferta" }]
+}
+{% endschema %}

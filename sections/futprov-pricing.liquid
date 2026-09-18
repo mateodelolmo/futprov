@@ -1,0 +1,155 @@
+{{ 'futprov.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'futprov.js' | asset_url }}" defer="defer"></script>
+
+<div class="fp-section color-{{ section.settings.color_scheme }} page-width section-{{ section.id }}-padding">
+  <div class="fp-pricing" data-fp-inview>
+    <div class="fp-pricing__head">
+      <div>
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="fp-pricing__eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        <h2 class="fp-pricing__title">{{ section.settings.heading }}</h2>
+      </div>
+      {%- if section.settings.subheading != blank -%}
+        <span class="fp-pricing__unit">{{ section.settings.subheading }}</span>
+      {%- endif -%}
+    </div>
+
+    <div class="fp-pricing__card">
+      {%- for block in section.blocks -%}
+        <article class="fp-pricing__row" {{ block.shopify_attributes }}>
+          <div>
+            <h3>{{ block.settings.name }}</h3>
+            {%- if block.settings.detail != blank -%}
+              <p>{{ block.settings.detail }}</p>
+            {%- endif -%}
+          </div>
+          <strong>{{ block.settings.price }}</strong>
+        </article>
+      {%- endfor -%}
+    </div>
+
+    {%- if section.settings.notes != blank -%}
+      <div class="fp-pricing__notes">
+        {{ section.settings.notes }}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+  #shopify-section-{{ section.id }} .fp-pricing {
+    max-width: 76rem;
+    margin: 0 auto;
+  }
+  #shopify-section-{{ section.id }} .fp-pricing__head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.6rem;
+  }
+  #shopify-section-{{ section.id }} .fp-pricing__eyebrow {
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--fp-accent);
+    margin: 0 0 0.4rem;
+  }
+  #shopify-section-{{ section.id }} .fp-pricing__title {
+    margin: 0;
+    font-size: clamp(2.4rem, 4vw, 3.6rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  #shopify-section-{{ section.id }} .fp-pricing__unit {
+    font-size: 1.3rem;
+    opacity: 0.45;
+  }
+  #shopify-section-{{ section.id }} .fp-pricing__card {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1.6rem;
+    overflow: hidden;
+    background: #101212;
+  }
+  #shopify-section-{{ section.id }} .fp-pricing__row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.6rem 1.4rem;
+  }
+  #shopify-section-{{ section.id }} .fp-pricing__row + .fp-pricing__row {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  #shopify-section-{{ section.id }} .fp-pricing__row h3 {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 700;
+  }
+  #shopify-section-{{ section.id }} .fp-pricing__row p {
+    margin: 0.2rem 0 0;
+    font-size: 1.3rem;
+    opacity: 0.5;
+  }
+  #shopify-section-{{ section.id }} .fp-pricing__row strong {
+    font-size: 2.2rem;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+  }
+  #shopify-section-{{ section.id }} .fp-pricing__notes {
+    margin-top: 1.6rem;
+    font-size: 1.4rem;
+    opacity: 0.75;
+    line-height: 1.5;
+  }
+  #shopify-section-{{ section.id }} .fp-pricing__notes p {
+    margin: 0.3rem 0;
+  }
+{%- endstyle -%}
+
+{% schema %}
+{
+  "name": "Fut Prov · Precios",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Etiqueta superior", "default": "Tabla de precios" },
+    { "type": "text", "id": "heading", "label": "Título", "default": "Tarifas de proveedor" },
+    { "type": "text", "id": "subheading", "label": "Texto a la derecha del título", "default": "Por unidad" },
+    { "type": "richtext", "id": "notes", "label": "Notas / extras" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:sections.all.colors.label", "default": "scheme-3" }
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "Tarifa",
+      "settings": [
+        { "type": "text", "id": "name", "label": "Nombre" },
+        { "type": "text", "id": "detail", "label": "Detalle" },
+        { "type": "text", "id": "price", "label": "Precio" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fut Prov · Precios",
+      "blocks": [
+        { "type": "row", "settings": { "name": "🚶 Versión Fan", "detail": "Camiseta manga corta", "price": "7,50 €" } },
+        { "type": "row", "settings": { "name": "🏃 Versión Jugador", "detail": "Ajuste jugador", "price": "10 €" } },
+        { "type": "row", "settings": { "name": "🧍 Versión Retro", "detail": "Manga corta", "price": "11 €" } },
+        { "type": "row", "settings": { "name": "🧍 Set Infantil", "detail": "Tallas niño", "price": "10 €" } },
+        { "type": "row", "settings": { "name": "🕴 Fan de manga larga", "detail": "Manga larga", "price": "10 €" } },
+        { "type": "row", "settings": { "name": "🕺 Jugador de manga larga", "detail": "Manga larga", "price": "12 €" } },
+        { "type": "row", "settings": { "name": "🕺 Retro de manga larga", "detail": "Manga larga", "price": "12 €" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

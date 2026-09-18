@@ -1,0 +1,144 @@
+{{ 'futprov.css' | asset_url | stylesheet_tag }}
+
+<div class="fp-section color-{{ section.settings.color_scheme }} page-width section-{{ section.id }}-padding">
+  {%- if section.settings.heading != blank -%}
+    <h2 class="title{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      {{ section.settings.heading }}
+    </h2>
+  {%- endif -%}
+  {%- if section.settings.subheading != blank -%}
+    <p class="fp-catalog__subheading">{{ section.settings.subheading }}</p>
+  {%- endif -%}
+
+  <div class="fp-providers">
+    {%- for block in section.blocks -%}
+      {%- assign product = all_products[block.settings.product_handle] -%}
+      {%- if product != blank -%}
+        <div class="fp-provider-card" {{ block.shopify_attributes }}>
+          <a href="{{ product.url }}" class="fp-provider-card__media">
+            {%- if product.featured_image -%}
+              {{
+                product.featured_image
+                | image_url: width: 500
+                | image_tag: loading: 'lazy', widths: '250,350,500', class: 'fp-provider-card__img'
+              }}
+            {%- endif -%}
+          </a>
+          <div class="fp-provider-card__body">
+            <a href="{{ product.url }}" class="fp-provider-card__title">{{ product.title }}</a>
+            {%- if block.settings.rating > 0 -%}
+              <div class="fp-provider-card__stars" aria-hidden="true">
+                {%- for i in (1..5) -%}
+                  {%- if i <= block.settings.rating -%}★{%- else -%}☆{%- endif -%}
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+            <div class="fp-provider-card__price">{{ product.price | money }}</div>
+            {%- form 'product', product -%}
+              <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+              <button type="submit" name="add" class="button button--full-width button--primary">
+                {{ section.settings.button_label | default: 'Agregar al carrito' }}
+              </button>
+            {%- endform -%}
+          </div>
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+  #shopify-section-{{ section.id }} .fp-providers {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  #shopify-section-{{ section.id }} .fp-provider-card {
+    border: 1px solid rgba(var(--color-foreground), 0.12);
+    border-radius: 1.2rem;
+    overflow: hidden;
+    background: rgba(var(--color-foreground), 0.04);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  #shopify-section-{{ section.id }} .fp-provider-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--fp-accent, #00a3e0);
+  }
+  #shopify-section-{{ section.id }} .fp-provider-card__media {
+    display: block;
+    aspect-ratio: 4 / 3;
+  }
+  #shopify-section-{{ section.id }} .fp-provider-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  #shopify-section-{{ section.id }} .fp-provider-card__body {
+    padding: 1.6rem;
+  }
+  #shopify-section-{{ section.id }} .fp-provider-card__title {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: inherit;
+    text-decoration: none;
+    margin-bottom: 0.4rem;
+  }
+  #shopify-section-{{ section.id }} .fp-provider-card__stars {
+    color: var(--fp-accent, #00a3e0);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.6rem;
+  }
+  #shopify-section-{{ section.id }} .fp-provider-card__price {
+    font-size: 1.8rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+  }
+{%- endstyle -%}
+
+{% schema %}
+{
+  "name": "Fut Prov · Proveedores",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Título", "default": "Accesos a proveedores" },
+    { "type": "text", "id": "subheading", "label": "Subtítulo", "default": "Elige el pack que necesites y consigue el contacto al instante." },
+    { "type": "text", "id": "button_label", "label": "Texto del botón", "default": "Agregar al carrito" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:sections.all.colors.label", "default": "scheme-1" }
+  ],
+  "blocks": [
+    {
+      "type": "provider",
+      "name": "Proveedor",
+      "settings": [
+        { "type": "text", "id": "product_handle", "label": "Handle del producto" },
+        { "type": "range", "id": "rating", "label": "Valoración (estrellas)", "min": 0, "max": 5, "step": 1, "default": 5 }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fut Prov · Proveedores",
+      "blocks": [
+        { "type": "provider" },
+        { "type": "provider" },
+        { "type": "provider" },
+        { "type": "provider" },
+        { "type": "provider" },
+        { "type": "provider" },
+        { "type": "provider" },
+        { "type": "provider" }
+      ]
+    }
+  ]
+}
+{% endschema %}

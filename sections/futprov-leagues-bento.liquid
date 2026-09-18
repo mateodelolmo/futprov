@@ -10,9 +10,8 @@
   <div class="fp-bento">
     {%- for block in section.blocks -%}
       <a
-        href="#fp-catalog"
+        href="{{ block.settings.link | default: routes.all_products_collection_url }}"
         class="fp-bento__item{% if forloop.first %} fp-bento__item--big{% endif %}"
-        data-fp-goto-league="{{ block.settings.league_filter }}"
         {{ block.shopify_attributes }}
       >
         {%- if block.settings.image_url != blank -%}
@@ -59,7 +58,7 @@
         { "type": "url", "id": "image_url", "label": "Imagen (URL)" },
         { "type": "text", "id": "label", "label": "Nombre", "default": "LaLiga" },
         { "type": "text", "id": "sublabel", "label": "Descripción", "default": "26-27 · Todos los equipos" },
-        { "type": "text", "id": "league_filter", "label": "Filtro del catálogo (debe coincidir con la liga)", "default": "LaLiga" }
+        { "type": "url", "id": "link", "label": "Enlace al catálogo filtrado" }
       ]
     }
   ],
@@ -67,12 +66,12 @@
     {
       "name": "Fut Prov · Ligas",
       "blocks": [
-        { "type": "league", "settings": { "label": "LaLiga", "sublabel": "26-27 · Todos los equipos", "league_filter": "LaLiga", "image_url": "https://cdn.shopify.com/s/files/1/0896/7621/8701/files/ChatGPTImage15ago2026_20_44_58.png?v=1786819511" } },
-        { "type": "league", "settings": { "label": "Premier League", "sublabel": "26-27 · Todos los equipos", "league_filter": "Premier League", "image_url": "https://cdn.shopify.com/s/files/1/0896/7621/8701/files/21136578.jpg?v=1785347064" } },
-        { "type": "league", "settings": { "label": "Retro", "sublabel": "Clásicos históricos", "league_filter": "Retro", "image_url": "https://cdn.shopify.com/s/files/1/0896/7621/8701/files/brasil_1_1.jpg?v=1763660488" } },
-        { "type": "league", "settings": { "label": "Selecciones", "sublabel": "Mundial y Eurocopa", "league_filter": "Selecciones", "image_url": "https://cdn.shopify.com/s/files/1/0896/7621/8701/files/2350f6fc.jpg?v=1775594935" } },
-        { "type": "league", "settings": { "label": "Mujer", "sublabel": "Tallas femeninas", "league_filter": "Mujer", "image_url": "https://cdn.shopify.com/s/files/1/0896/7621/8701/files/topmad.png?v=1768236126" } },
-        { "type": "league", "settings": { "label": "Niños", "sublabel": "Tallas infantiles", "league_filter": "Niños", "image_url": "https://cdn.shopify.com/s/files/1/0896/7621/8701/files/9b181039.jpg?v=1768312713" } }
+        { "type": "league", "settings": { "label": "LaLiga", "sublabel": "26-27 · Todos los equipos", "link": "/collections/all?categoria=LaLiga", "image_url": "https://cdn.shopify.com/s/files/1/0896/7621/8701/files/ChatGPTImage15ago2026_20_44_58.png?v=1786819511" } },
+        { "type": "league", "settings": { "label": "Premier League", "sublabel": "26-27 · Todos los equipos", "link": "/collections/all?categoria=Premier%20League", "image_url": "https://cdn.shopify.com/s/files/1/0896/7621/8701/files/21136578.jpg?v=1785347064" } },
+        { "type": "league", "settings": { "label": "Retro", "sublabel": "Clásicos históricos", "link": "/collections/all?categoria=Retro", "image_url": "https://cdn.shopify.com/s/files/1/0896/7621/8701/files/brasil_1_1.jpg?v=1763660488" } },
+        { "type": "league", "settings": { "label": "Selecciones", "sublabel": "Mundial y Eurocopa", "link": "/collections/all?categoria=Selecciones", "image_url": "https://cdn.shopify.com/s/files/1/0896/7621/8701/files/2350f6fc.jpg?v=1775594935" } },
+        { "type": "league", "settings": { "label": "Mujer", "sublabel": "Tallas femeninas", "link": "/collections/all?categoria=Mujer", "image_url": "https://cdn.shopify.com/s/files/1/0896/7621/8701/files/topmad.png?v=1768236126" } },
+        { "type": "league", "settings": { "label": "Niños", "sublabel": "Tallas infantiles", "link": "/collections/all?categoria=Ninos", "image_url": "https://cdn.shopify.com/s/files/1/0896/7621/8701/files/9b181039.jpg?v=1768312713" } }
       ]
     }
   ]

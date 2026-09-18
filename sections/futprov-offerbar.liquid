@@ -1,0 +1,58 @@
+{{ 'futprov.css' | asset_url | stylesheet_tag }}
+
+<div class="fp-offerbar color-{{ section.settings.color_scheme }}">
+  <span>{{ section.settings.text }}</span>
+  <span class="fp-offerbar__timer" data-fp-offerbar-timer aria-hidden="true"></span>
+</div>
+
+<script>
+  (function () {
+    var el = document.querySelector('[data-fp-offerbar-timer]');
+    if (!el) return;
+    function pad(n) { return String(n).padStart(2, '0'); }
+    function tick() {
+      var now = new Date();
+      var end = new Date(now);
+      end.setHours(24, 0, 0, 0);
+      var diff = Math.max(0, end - now);
+      var h = Math.floor(diff / 3600000);
+      var m = Math.floor((diff % 3600000) / 60000);
+      var s = Math.floor((diff % 60000) / 1000);
+      el.textContent = pad(h) + ':' + pad(m) + ':' + pad(s);
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+</script>
+
+<style>
+  .fp-offerbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0.8rem 1.6rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .fp-offerbar__timer {
+    font-variant-numeric: tabular-nums;
+    opacity: 0.85;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Fut Prov · Barra oferta",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "text", "label": "Texto", "default": "¡Oferta especial solo hoy! Termina en:" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:sections.all.colors.label", "default": "scheme-4" }
+  ],
+  "presets": [{ "name": "Fut Prov · Barra oferta" }]
+}
+{% endschema %}

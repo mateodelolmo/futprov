@@ -1,0 +1,102 @@
+<script>
+(function() {
+  var ua = navigator.userAgent || navigator.vendor || window.opera;
+  var esTikTok = ua.indexOf("TikTok") !== -1 || ua.indexOf("musical_ly") !== -1;
+  if (!esTikTok) return;
+
+  try {
+    if (window.location.search.indexOf('utm_source=tiktok') === -1) {
+      var conector = window.location.search ? '&' : '?';
+      var nuevaURL = window.location.pathname + window.location.search + conector + 'utm_source=tiktok&utm_medium=popup_bloqueo' + window.location.hash;
+      window.history.replaceState(null, '', nuevaURL);
+    }
+  } catch (e) {
+    console.log('Error en registro');
+  }
+
+  var traducciones = {
+    es: {
+      intro: "Para visualizar de forma correcta esta web:",
+      step1: "Toca los tres puntos (<b>...</b>) en la esquina superior derecha.",
+      step2: "Selecciona la opción <b>\"Abrir en el navegador\"</b>."
+    },
+    en: {
+      intro: "To view this website correctly:",
+      step1: "Tap the three dots (<b>...</b>) in the top right corner.",
+      step2: "Select the <b>\"Open in browser\"</b> option."
+    },
+    de: {
+      intro: "Um diese Website korrekt anzuzeigen:",
+      step1: "Tippe auf die drei Punkte (<b>...</b>) oben rechts.",
+      step2: "Wählen Sie die Option <b>\"Im Browser öffnen\"</b>."
+    },
+    it: {
+      intro: "Per visualizzare correttamente questo sito web:",
+      step1: "Tocca i tre puntini (<b>...</b>) nell'angolo in alto a destra.",
+      step2: "Seleziona l'opzione <b>\"Apri nel browser\"</b>."
+    },
+    pt: {
+      intro: "Para visualizar corretamente este site:",
+      step1: "Toque nos três pontos (<b>...</b>) no canto superior direito.",
+      step2: "Selecione a opção <b>\"Abrir no navegador\"</b>."
+    },
+    fr: {
+      intro: "Pour afficher correctement ce site web :",
+      step1: "Appuyez sur les trois points (<b>...</b>) en haut à droite.",
+      step2: "Sélectionnez l'option <b>\"Ouvrir dans le navigateur\"</b>."
+    }
+  };
+  var idiomaUsuario = (navigator.language || navigator.userLanguage).substring(0, 2).toLowerCase();
+  var lang = traducciones[idiomaUsuario] ? idiomaUsuario : 'en';
+
+  var estilo = document.createElement('style');
+  estilo.textContent = ''
+    + '#tiktok-overlay {'
+    + 'position: fixed !important; top: 0 !important; left: 0 !important;'
+    + 'width: 100% !important; height: 100% !important;'
+    + 'background: rgba(10, 10, 10, 0.98) !important;'
+    + 'z-index: 9999999 !important; color: white !important;'
+    + 'font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;'
+    + 'padding: 20px !important; box-sizing: border-box !important; display: block !important;'
+    + '}'
+    + '@keyframes resplandorEstatico {'
+    + '0%, 100% { filter: drop-shadow(0 0 2px rgba(255, 0, 80, 0.3)); opacity: 0.5; }'
+    + '50% { filter: drop-shadow(0 0 15px rgba(255, 0, 80, 1)) drop-shadow(0 0 30px rgba(255, 0, 80, 0.8)); opacity: 1; }'
+    + '}'
+    + '.flecha-animada {'
+    + 'position: absolute !important; top: 20px !important; right: 5px !important;'
+    + 'width: 150px !important; height: 150px !important; color: #ff0050 !important;'
+    + 'transform: rotate(25deg) !important; transform-origin: center !important;'
+    + 'animation: resplandorEstatico 2s infinite ease-in-out !important;'
+    + '}'
+    + '.contenedor-instrucciones {'
+    + 'max-width: 400px !important; margin: 170px auto 0 auto !important;'
+    + 'text-align: left !important; font-size: 16px !important; line-height: 1.6 !important;'
+    + '}'
+    + '.contenedor-instrucciones p {'
+    + 'font-size: 19px !important; font-weight: 600 !important; margin-bottom: 25px !important;'
+    + 'text-align: center !important; color: #ffffff !important;'
+    + '}'
+    + '.contenedor-instrucciones ol { padding-left: 20px !important; }'
+    + '.contenedor-instrucciones li {'
+    + 'margin-bottom: 18px !important; color: #e0e0e0 !important; font-size: 16px !important;'
+    + '}';
+  document.head.appendChild(estilo);
+
+  var overlay = document.createElement('div');
+  overlay.id = 'tiktok-overlay';
+  overlay.innerHTML = ''
+    + '<svg class="flecha-animada" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">'
+    + '<line x1="12" y1="22" x2="12" y2="3"></line>'
+    + '<polyline points="5 10 12 3 19 10"></polyline>'
+    + '</svg>'
+    + '<div class="contenedor-instrucciones">'
+    + '<p>' + traducciones[lang].intro + '</p>'
+    + '<ol>'
+    + '<li>' + traducciones[lang].step1 + '</li>'
+    + '<li>' + traducciones[lang].step2 + '</li>'
+    + '</ol>'
+    + '</div>';
+  document.body.insertBefore(overlay, document.body.firstChild);
+})();
+</script>

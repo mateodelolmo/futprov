@@ -1,0 +1,22 @@
+{%- comment -%}
+  CTA de la ficha de camiseta cuando la venta directa está desactivada.
+  Usa el ajuste global "Fut Prov · Proveedor" (config/settings_schema.json).
+{%- endcomment -%}
+{%- assign fp_provider = all_products[settings.fp_provider_product] -%}
+<div class="fp-showcase-cta">
+  <p class="fp-showcase-cta__note">Esta camiseta no se vende directamente aquí. Consigue acceso al proveedor para pedirla.</p>
+  {%- if fp_provider != blank -%}
+    <a href="{{ fp_provider.url }}" class="button button--full-width button--primary">
+      {{ settings.fp_provider_cta_label | default: 'Consigue el contacto del proveedor' }}
+    </a>
+  {%- else -%}
+    <a href="{{ routes.all_products_collection_url }}" class="button button--full-width button--primary">
+      {{ settings.fp_provider_cta_label | default: 'Consigue el contacto del proveedor' }}
+    </a>
+  {%- endif -%}
+</div>
+
+<style>
+  .fp-showcase-cta { margin-top: 1.2rem; }
+  .fp-showcase-cta__note { font-size: 1.3rem; opacity: 0.65; margin: 0 0 1.2rem; line-height: 1.5; }
+</style>

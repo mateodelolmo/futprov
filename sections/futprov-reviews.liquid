@@ -1,0 +1,68 @@
+{{ 'futprov.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'futprov.js' | asset_url }}" defer="defer"></script>
+
+<div id="resenas" class="fp-section color-{{ section.settings.color_scheme }} page-width section-{{ section.id }}-padding">
+  {%- if section.settings.heading != blank -%}
+    <h2 class="title{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      {{ section.settings.heading }}
+    </h2>
+  {%- endif -%}
+
+  <div class="fp-reviews" data-fp-inview>
+    {%- for block in section.blocks -%}
+      <div class="fp-review" {{ block.shopify_attributes }}>
+        <div class="fp-review__stars" aria-hidden="true">
+          {%- for i in (1..5) -%}
+            <span class="{% if i <= block.settings.rating %}fp-star--full{% else %}fp-star--empty{% endif %}">★</span>
+          {%- endfor -%}
+        </div>
+        <p class="fp-review__text">"{{ block.settings.text }}"</p>
+        <p class="fp-review__author">{{ block.settings.author }}<span> · {{ block.settings.product_label }}</span></p>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+{%- endstyle -%}
+
+{% schema %}
+{
+  "name": "Fut Prov · Reseñas",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Título", "default": "Lo que dicen nuestros clientes" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:sections.all.colors.label", "default": "scheme-2" }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Reseña",
+      "settings": [
+        { "type": "range", "id": "rating", "label": "Estrellas", "min": 1, "max": 5, "step": 1, "default": 5 },
+        { "type": "textarea", "id": "text", "label": "Texto" },
+        { "type": "text", "id": "author", "label": "Nombre" },
+        { "type": "text", "id": "product_label", "label": "Producto/equipo" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fut Prov · Reseñas",
+      "blocks": [
+        { "type": "review", "settings": { "rating": 5, "text": "Llegó antes de lo esperado y la calidad es una pasada, parece oficial. Repetiré seguro.", "author": "Marcos R.", "product_label": "Real Madrid 25-26" } },
+        { "type": "review", "settings": { "rating": 5, "text": "Pedí la versión Player con mi nombre y dorsal, quedó perfecta. Muy transpirable.", "author": "Laura G.", "product_label": "Barcelona 25-26" } },
+        { "type": "review", "settings": { "rating": 4, "text": "Buena relación calidad-precio, la talla recomendada acertó totalmente.", "author": "Iván T.", "product_label": "Selección España" } },
+        { "type": "review", "settings": { "rating": 5, "text": "Se la regalé a mi hijo, la versión niño le queda genial y el envío fue rapidísimo.", "author": "Cristina M.", "product_label": "Manchester City niño" } },
+        { "type": "review", "settings": { "rating": 5, "text": "El parche personalizado quedó tal cual lo pedí. Atención al cliente muy atenta.", "author": "David P.", "product_label": "Retro AC Milan" } },
+        { "type": "review", "settings": { "rating": 4, "text": "Muy contento con la compra, el envío gratis a partir de 89€ se agradece.", "author": "Sara L.", "product_label": "Bayern Múnich 25-26" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

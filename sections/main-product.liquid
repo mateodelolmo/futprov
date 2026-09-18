@@ -85,6 +85,10 @@
             class="product__info-container{% if section.settings.enable_sticky_info %} product__column-sticky{% endif %}"
           >
             {%- assign product_form_id = 'product-form-' | append: section.id -%}
+            {%- assign fp_showcase = false -%}
+            {%- if product.type contains 'Camiseta' -%}
+              {%- assign fp_showcase = true -%}
+            {%- endif -%}
 
             {%- for block in section.blocks -%}
               {%- case block.type -%}
@@ -107,6 +111,7 @@
                     </a>
                   </div>
                 {%- when 'price' -%}
+                  {%- unless fp_showcase -%}
                   <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
                     {%- render 'price',
                       product: product,
@@ -141,6 +146,7 @@
                       {{ form | payment_terms }}
                     {%- endform -%}
                   </div>
+                  {%- endunless -%}
                 {%- when 'inventory' -%}
                   <p
                     class="product__inventory{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.inventory_management != 'shopify' %} visibility-hidden{% endif %}"
@@ -193,11 +199,13 @@
                     {%- endif -%}
                   </p>
                 {%- when 'description' -%}
-                  {%- if product.description != blank -%}
-                    <div class="product__description rte quick-add-hidden" {{ block.shopify_attributes }}>
-                      {{ product.description }}
-                    </div>
-                  {%- endif -%}
+                  {%- unless fp_showcase -%}
+                    {%- if product.description != blank -%}
+                      <div class="product__description rte quick-add-hidden" {{ block.shopify_attributes }}>
+                        {{ product.description }}
+                      </div>
+                    {%- endif -%}
+                  {%- endunless -%}
                 {%- when 'sku' -%}
                   <p
                     class="product__sku{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.sku.size == 0 %} visibility-hidden{% endif %}"
@@ -229,6 +237,7 @@
                     </details>
                   </div>
                 {%- when 'quantity_selector' -%}
+                  {%- unless fp_showcase -%}
                   <div
                     id="Quantity-Form-{{ section.id }}"
                     class="product-form__input product-form__quantity{% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} product-form__quantity-top{% endif %}"
@@ -455,6 +464,7 @@
                       </volume-pricing>
                     {%- endif -%}
                   </div>
+                  {%- endunless -%}
                 {%- when 'popup' -%}
                   <modal-opener
                     class="product-popup-modal__opener quick-add-hidden"
@@ -486,12 +496,17 @@
                     surface: 'product_page'
                   -%}
                 {%- when 'variant_picker' -%}
+                  {%- unless fp_showcase -%}
                   {% render 'product-variant-picker',
                     product: product,
                     block: block,
                     product_form_id: product_form_id
                   %}
+                  {%- endunless -%}
                 {%- when 'buy_buttons' -%}
+                  {%- if fp_showcase -%}
+                    {%- render 'fp-showcase-cta' -%}
+                  {%- else -%}
                   {%- render 'buy-buttons',
                     block: block,
                     product: product,
@@ -499,6 +514,7 @@
                     section_id: section.id,
                     show_pickup_availability: true
                   -%}
+                  {%- endif -%}
                 {%- when 'rating' -%}
                   {%- if product.metafields.reviews.rating.value != blank -%}
                     <div class="rating-wrapper">

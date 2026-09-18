@@ -13,7 +13,7 @@
   {%- endif -%}
 
   <div class="page-width">
-    <div class="fp-hero__content" data-fp-inview>
+    <div class="fp-hero__content">
       {%- if section.settings.eyebrow != blank -%}
         <span class="fp-hero__eyebrow">{{ section.settings.eyebrow }}</span>
       {%- endif -%}
@@ -35,8 +35,13 @@
         {%- if section.settings.primary_label != blank -%}
           <a href="{{ section.settings.primary_link }}" class="button">{{ section.settings.primary_label }}</a>
         {%- endif -%}
-        {%- if section.settings.secondary_label != blank -%}
-          <a href="{{ section.settings.secondary_link }}" class="button button--secondary">{{ section.settings.secondary_label }}</a>
+        {%- assign fp_secondary_url = section.settings.secondary_link -%}
+        {%- assign fp_provider = all_products[settings.fp_provider_product] -%}
+        {%- if fp_secondary_url == blank and fp_provider != blank -%}
+          {%- assign fp_secondary_url = fp_provider.url -%}
+        {%- endif -%}
+        {%- if section.settings.secondary_label != blank and fp_secondary_url != blank -%}
+          <a href="{{ fp_secondary_url }}" class="button button--secondary">{{ section.settings.secondary_label }}</a>
         {%- endif -%}
       </div>
     </div>

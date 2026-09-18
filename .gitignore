@@ -9,4 +9,8 @@ ehthumbs.db
 Thumbs.db
 .shopify
 node_modules
-*.zip.playwright-mcp/
+*.zip
+.env*
+dist
+.wrangler
+.playwright-mcp/

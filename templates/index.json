@@ -1,90 +1,41 @@
 {
   "sections": {
+    "fp_offerbar": {
+      "type": "futprov-offerbar",
+      "settings": {
+        "text": "¡Oferta especial solo hoy! Acceso al proveedor con descuento. Termina en:",
+        "color_scheme": "scheme-4"
+      }
+    },
     "fp_hero": {
       "type": "futprov-hero",
       "settings": {
         "background_image": "shopify://shop_images/IMG-5059.png",
-        "eyebrow": "Catálogo del proveedor",
-        "heading": "CAMISETAS\nPERSONALIZADAS",
-        "subheading": "Elige tu camiseta, personalízala con nombre y dorsal, y la recibimos en casa lista para jugar.",
+        "eyebrow": "El catálogo más completo de camisetas",
+        "heading": "CONSIGUE EL ACCESO\nAL PROVEEDOR",
+        "subheading": "Explora el catálogo de camisetas de todas las ligas y hazte con el contacto directo del proveedor para pedir la que quieras.",
         "primary_label": "Ver catálogo",
-        "primary_link": "#fp-catalog",
-        "secondary_label": "Conseguir acceso · 9,99€",
-        "secondary_link": "shopify://products/guia-digital-pdf",
+        "primary_link": "/collections/all",
+        "secondary_label": "Comprar contacto proveedor",
+        "secondary_link": "",
         "marquee_text": "LaLiga, Premier League, Bundesliga, Ligue 1, Retro, Selecciones",
         "color_scheme": "scheme-4"
       }
     },
-    "fp_leagues": {
-      "type": "futprov-leagues-bento",
+    "fp_providers": {
+      "type": "futprov-providers",
       "blocks": {
-        "l1": {
-          "type": "league",
-          "settings": {
-            "label": "LaLiga",
-            "sublabel": "26-27 · Todos los equipos",
-            "league_filter": "LaLiga",
-            "image_url": "https://cdn.shopify.com/s/files/1/0896/7621/8701/files/ChatGPTImage15ago2026_20_44_58.png?v=1786819511"
-          }
-        },
-        "l2": {
-          "type": "league",
-          "settings": {
-            "label": "Premier League",
-            "sublabel": "26-27 · Todos los equipos",
-            "league_filter": "Premier League",
-            "image_url": "https://cdn.shopify.com/s/files/1/0896/7621/8701/files/21136578.jpg?v=1785347064"
-          }
-        },
-        "l3": {
-          "type": "league",
-          "settings": {
-            "label": "Retro",
-            "sublabel": "Clásicos históricos",
-            "league_filter": "Retro",
-            "image_url": "https://cdn.shopify.com/s/files/1/0896/7621/8701/files/brasil_1_1.jpg?v=1763660488"
-          }
-        },
-        "l4": {
-          "type": "league",
-          "settings": {
-            "label": "Selecciones",
-            "sublabel": "Mundial y Eurocopa",
-            "league_filter": "Selecciones",
-            "image_url": "https://cdn.shopify.com/s/files/1/0896/7621/8701/files/2350f6fc.jpg?v=1775594935"
-          }
-        },
-        "l5": {
-          "type": "league",
-          "settings": {
-            "label": "Mujer",
-            "sublabel": "Tallas femeninas",
-            "league_filter": "Mujer",
-            "image_url": "https://cdn.shopify.com/s/files/1/0896/7621/8701/files/topmad.png?v=1768236126"
-          }
-        },
-        "l6": {
-          "type": "league",
-          "settings": {
-            "label": "Niños",
-            "sublabel": "Tallas infantiles",
-            "league_filter": "Niños",
-            "image_url": "https://cdn.shopify.com/s/files/1/0896/7621/8701/files/9b181039.jpg?v=1768312713"
-          }
-        }
+        "p0": { "type": "provider", "settings": { "product_handle": "guia-digital-pdf", "rating": 5 } },
+        "p1": { "type": "provider", "settings": { "product_handle": "proveedor-ropa", "rating": 5 } },
+        "p2": { "type": "provider", "settings": { "product_handle": "proveedor-perfumes", "rating": 5 } },
+        "p3": { "type": "provider", "settings": { "product_handle": "proveedor-pack-3", "rating": 5 } },
+        "p4": { "type": "provider", "settings": { "product_handle": "proveedor-vapes", "rating": 5 } }
       },
-      "block_order": ["l1", "l2", "l3", "l4", "l5", "l6"],
+      "block_order": ["p0", "p1", "p2", "p3", "p4"],
       "settings": {
-        "heading": "Explora por liga",
-        "color_scheme": "scheme-1"
-      }
-    },
-    "fp_catalog": {
-      "type": "futprov-catalog",
-      "settings": {
-        "heading": "Todo lo que puedes conseguir",
-        "subheading": "Muestra del catálogo disponible a través de nuestro proveedor. Este escaparate no es comprable directamente — consigue el acceso completo con la guía digital.",
-        "product": "guia-digital-pdf",
+        "heading": "Accesos a proveedores",
+        "subheading": "Elige el pack que necesites y consigue el contacto al instante.",
+        "button_label": "Agregar al carrito",
         "color_scheme": "scheme-1"
       }
     },
@@ -102,46 +53,115 @@
           "type": "step",
           "settings": {
             "title": "Personalízala",
-            "text": "Añade nombre, dorsal y parches. Cada camiseta se prepara a tu medida."
+            "text": "Añade número, dorsal, nombre y parche. Cada camiseta se prepara a tu medida."
           }
         },
         "s3": {
           "type": "step",
           "settings": {
             "title": "Recíbela en casa",
-            "text": "Gestionamos el pedido con el proveedor y te llega lista para jugar."
+            "text": "Gestionamos el pedido con el proveedor y te llega lista para jugar. Envío gratis desde 89€."
           }
         }
       },
-      "block_order": ["s1", "s2", "s3"],
+      "block_order": [
+        "s1",
+        "s2",
+        "s3"
+      ],
       "settings": {
         "heading": "Cómo funciona",
+        "color_scheme": "scheme-2"
+      }
+    },
+    "fp_reviews": {
+      "type": "futprov-reviews",
+      "blocks": {
+        "r1": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "text": "Llegó antes de lo esperado y la calidad es una pasada, parece oficial. Repetiré seguro.",
+            "author": "Marcos R.",
+            "product_label": "Real Madrid 25-26"
+          }
+        },
+        "r2": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "text": "Pedí la versión Player con mi nombre y dorsal, quedó perfecta. Muy transpirable.",
+            "author": "Laura G.",
+            "product_label": "Barcelona 25-26"
+          }
+        },
+        "r3": {
+          "type": "review",
+          "settings": {
+            "rating": 4,
+            "text": "Buena relación calidad-precio, la talla recomendada acertó totalmente.",
+            "author": "Iván T.",
+            "product_label": "Selección España"
+          }
+        },
+        "r4": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "text": "Se la regalé a mi hijo, la versión niño le queda genial y el envío fue rapidísimo.",
+            "author": "Cristina M.",
+            "product_label": "Manchester City niño"
+          }
+        },
+        "r5": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "text": "El parche personalizado quedó tal cual lo pedí. Atención al cliente muy atenta.",
+            "author": "David P.",
+            "product_label": "Retro AC Milan"
+          }
+        }
+      },
+      "block_order": ["r1", "r2", "r3", "r4", "r5"],
+      "settings": {
+        "heading": "Lo que dicen nuestros clientes",
         "color_scheme": "scheme-2"
       }
     },
     "fp_trust": {
       "type": "futprov-trust",
       "blocks": {
-        "t1": { "type": "stat", "settings": { "number": 350, "label": "camisetas en catálogo" } },
-        "t2": { "type": "stat", "settings": { "number": 12, "label": "ligas y selecciones" } },
-        "t3": { "type": "stat", "settings": { "number": 5, "label": "envío gratis a partir de" } }
+        "t1": {
+          "type": "stat",
+          "settings": {
+            "number": 2540,
+            "label": "camisetas en catálogo"
+          }
+        },
+        "t2": {
+          "type": "stat",
+          "settings": {
+            "number": 12,
+            "label": "ligas y selecciones"
+          }
+        }
       },
-      "block_order": ["t1", "t2", "t3"],
+      "block_order": [
+        "t1",
+        "t2"
+      ],
       "settings": {
         "color_scheme": "scheme-1"
       }
-    },
-    "fp_cta": {
-      "type": "futprov-cta",
-      "settings": {
-        "image": "shopify://shop_images/IMG-5059.png",
-        "heading": "Tu nombre, tu dorsal, tu camiseta",
-        "text": "Servicio de personalización sobre camisetas originales. Consigue acceso completo al catálogo del proveedor con la guía digital.",
-        "product": "guia-digital-pdf",
-        "button_label": "Empezar mi pedido",
-        "color_scheme": "scheme-3"
-      }
     }
   },
-  "order": ["fp_hero", "fp_leagues", "fp_catalog", "fp_steps", "fp_trust", "fp_cta"]
+  "order": [
+    "fp_offerbar",
+    "fp_hero",
+    "fp_providers",
+    "fp_trust",
+    "fp_steps",
+    "fp_reviews"
+  ]
 }

@@ -22,9 +22,14 @@
             }
           });
         },
-        { threshold: 0.3 }
+        { threshold: 0.15 }
       );
       revealTargets.forEach((el) => io.observe(el));
+      // Red de seguridad: si por lo que sea el observer no dispara (viewport atípico,
+      // el elemento nunca cruza el threshold), el contenido no debe quedar invisible.
+      setTimeout(() => {
+        revealTargets.forEach((el) => el.classList.add('fp-in-view'));
+      }, 1500);
     }
   }
 
