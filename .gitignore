@@ -14,3 +14,8 @@ node_modules
 dist
 .wrangler
 .playwright-mcp/
+
+# Rescate Fase 0: imagenes, pedidos y clientes (datos sensibles / binarios, no van al repo)
+tools/rescue/
+tools/rescue-images.log
+tools/rescue-images.run.log
