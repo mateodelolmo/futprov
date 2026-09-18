@@ -44,3 +44,18 @@ export async function getLeagues() {
   });
   return rows.map((r) => r.league as string);
 }
+
+export async function getProductByHandle(handle: string) {
+  return db.product.findUnique({
+    where: { handle },
+    include: { images: { orderBy: { position: "asc" } }, tags: { include: { tag: true } } },
+  });
+}
+
+export async function getCatalogStats() {
+  const [productCount, leagues] = await Promise.all([
+    db.product.count({ where: { active: true } }),
+    getLeagues(),
+  ]);
+  return { productCount, leagueCount: leagues.length };
+}
