@@ -1,0 +1,188 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ---------- Catálogo escaparate (camisetas, no se venden directamente) ----------
+
+model Product {
+  id          String   @id @default(cuid())
+  handle      String   @unique
+  title       String
+  description String?  @db.Text
+  type        String // Camiseta | Camiseta Retro | Chándal | Balón
+  league      String?
+  season      String?
+  kind        String?
+  isKid       Boolean  @default(false)
+  sizes       String[]
+  hasVersions Boolean  @default(true)
+  basePrice   Decimal  @db.Decimal(10, 2)
+  stockQty    Int      @default(0)
+  trackStock  Boolean  @default(false)
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  images ProductImage[]
+  tags   ProductTag[]
+
+  @@index([league])
+  @@index([type])
+  @@index([isKid])
+  @@index([active])
+}
+
+model ProductImage {
+  id        String  @id @default(cuid())
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  url       String
+  width     Int?
+  position  Int     @default(0)
+
+  @@index([productId])
+}
+
+model Tag {
+  id       String       @id @default(cuid())
+  slug     String       @unique
+  label    String
+  products ProductTag[]
+}
+
+model ProductTag {
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  tagId     String
+  tag       Tag     @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([productId, tagId])
+  @@index([tagId])
+}
+
+// ---------- Productos digitales (lo único que se vende) ----------
+
+enum DeliveryType {
+  PDF
+  CONTACT
+}
+
+model DigitalProduct {
+  id             String       @id @default(cuid())
+  handle         String       @unique
+  title          String
+  description    String?      @db.Text
+  priceCents     Int
+  compareAtCents Int?
+  stripePriceId  String?
+  deliveryType   DeliveryType
+  deliveryBody   String?      @db.Text // texto/whatsapp del proveedor, nunca en código
+  fileKey        String? // clave del PDF en Blob/R2
+  active         Boolean      @default(true)
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  orderItems OrderItem[]
+  deliveries Delivery[]
+}
+
+// ---------- Clientes y pedidos ----------
+
+model Customer {
+  id               String   @id @default(cuid())
+  email            String   @unique
+  name             String?
+  stripeCustomerId String?  @unique
+  createdAt        DateTime @default(now())
+
+  orders Order[]
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  REFUNDED
+  FAILED
+}
+
+model Order {
+  id                     String      @id @default(cuid())
+  number                 Int         @unique @default(autoincrement())
+  customerId             String?
+  customer               Customer?   @relation(fields: [customerId], references: [id])
+  email                  String
+  status                 OrderStatus @default(PENDING)
+  totalCents             Int
+  currency               String      @default("eur")
+  stripeSessionId        String?     @unique
+  stripePaymentIntentId  String?
+  createdAt              DateTime    @default(now())
+  paidAt                 DateTime?
+  refundedAt             DateTime?
+
+  items      OrderItem[]
+  deliveries Delivery[]
+
+  @@index([email])
+  @@index([status])
+}
+
+model OrderItem {
+  id               String         @id @default(cuid())
+  orderId          String
+  order            Order          @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  digitalProductId String
+  digitalProduct   DigitalProduct @relation(fields: [digitalProductId], references: [id])
+  titleSnapshot    String
+  unitCents        Int
+  qty              Int            @default(1)
+
+  @@index([orderId])
+}
+
+model Delivery {
+  id               String         @id @default(cuid())
+  orderId          String
+  order            Order          @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  digitalProductId String
+  digitalProduct   DigitalProduct @relation(fields: [digitalProductId], references: [id])
+  token            String         @unique
+  expiresAt        DateTime
+  downloadCount    Int            @default(0)
+  lastSentAt       DateTime?
+  createdAt        DateTime       @default(now())
+
+  @@index([orderId])
+  @@index([token])
+}
+
+// ---------- Admin CRM ----------
+
+enum AdminRole {
+  OWNER
+  STAFF
+}
+
+model AdminUser {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  passwordHash String
+  name         String?
+  role         AdminRole @default(STAFF)
+  createdAt    DateTime  @default(now())
+}
+
+model SiteSetting {
+  key   String @id
+  value Json
+}
+
+model WebhookEvent {
+  stripeEventId String   @id
+  processedAt   DateTime @default(now())
+}
