@@ -89,6 +89,15 @@ async function seedProducts(products: RawProduct[], tagIdBySlug: Map<string, str
   return created;
 }
 
+// El HTML del CSV trae el WhatsApp del proveedor: eso va a deliveryBody (privado),
+// nunca a description (pública, se muestra sin pagar). Ver web/tools/fix-delivery-body.mjs.
+const SAFE_DESCRIPTIONS: Record<string, string> = {
+  "proveedor-ropa": "Contacto directo por WhatsApp con el proveedor de ropa. Lo recibes al instante tras el pago.",
+  "proveedor-perfumes": "Contacto directo por WhatsApp con el proveedor de perfumes. Lo recibes al instante tras el pago.",
+  "proveedor-vapes": "Contacto directo por WhatsApp con el proveedor de vapes. Lo recibes al instante tras el pago.",
+  "proveedor-pack-3": "Accede a los 4 contactos de proveedor en un solo pack: camisetas, ropa, perfumes y vapes. Ahorra frente a comprarlos por separado.",
+};
+
 async function seedDigitalProducts() {
   const csv = readFileSync(PROVEEDORES_CSV, "utf-8");
   const rows: Record<string, string>[] = parse(csv, { columns: true, skip_empty_lines: true });
@@ -98,6 +107,8 @@ async function seedDigitalProducts() {
     const priceCents = Math.round(parseFloat(row["Variant Price"]) * 100);
     const compareAtRaw = row["Variant Compare At Price"];
     const compareAtCents = compareAtRaw ? Math.round(parseFloat(compareAtRaw) * 100) : null;
+    const deliveryType = handle === "guia-digital-pdf" ? "PDF" : "CONTACT";
+    const rawBody = row["Body (HTML)"];
 
     await db.digitalProduct.upsert({
       where: { handle },
@@ -105,10 +116,11 @@ async function seedDigitalProducts() {
       create: {
         handle,
         title: row["Title"],
-        description: row["Body (HTML)"],
+        description: deliveryType === "CONTACT" ? `<p>${SAFE_DESCRIPTIONS[handle] ?? ""}</p>` : rawBody,
+        deliveryBody: deliveryType === "CONTACT" ? rawBody : null,
         priceCents,
         compareAtCents,
-        deliveryType: handle === "guia-digital-pdf" ? "PDF" : "CONTACT",
+        deliveryType,
         active: row["Status"] === "active",
       },
     });

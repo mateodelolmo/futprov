@@ -4,7 +4,7 @@ export async function Trust() {
   const { productCount, leagueCount } = await getCatalogStats();
 
   return (
-    <div className="fp-section page-width" style={{ padding: "4rem 2rem" }}>
+    <div className="fp-section page-width fp-trust-wrap" data-fp-inview>
       <div className="fp-trust">
         <div className="fp-trust__item">
           <div className="fp-trust__num" data-fp-counter={productCount}>

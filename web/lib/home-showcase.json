@@ -1,0 +1,144 @@
+{
+  "showcase": [
+    {
+      "handle": "24-25-atletico-de-madrid-primera-equipacion",
+      "title": "24-25 Atlético de Madrid primera equipacion",
+      "league": "LaLiga",
+      "count": 314,
+      "src": "/home/showcase-24-25-atletico-de-madrid-primera-equipacion.webp",
+      "width": 900,
+      "height": 1200
+    },
+    {
+      "handle": "07-08-chelsea-primera-equipacion-nino",
+      "title": "07-08 chelsea primera equipación niño",
+      "league": "Premier League",
+      "count": 219,
+      "src": "/home/showcase-07-08-chelsea-primera-equipacion-nino.webp",
+      "width": 900,
+      "height": 900
+    },
+    {
+      "handle": "2022-brasil-equipacion-especial-negra-reflectante",
+      "title": "2022 Brasil equipación especial negra reflectante",
+      "league": "Selecciones",
+      "count": 313,
+      "src": "/home/showcase-2022-brasil-equipacion-especial-negra-reflectante.webp",
+      "width": 900,
+      "height": 900
+    },
+    {
+      "handle": "00-01-ac-milan-tercera-equipacion",
+      "title": "00-01 AC Milán tercera equipación",
+      "league": "Retro",
+      "count": 1362,
+      "src": "/home/showcase-00-01-ac-milan-tercera-equipacion.webp",
+      "width": 900,
+      "height": 900
+    },
+    {
+      "handle": "24-25-ac-milan-x-pleasures-equipacion",
+      "title": "24-25 AC Milan x Pleasures equipacion",
+      "league": "Serie A",
+      "count": 82,
+      "src": "/home/showcase-24-25-ac-milan-x-pleasures-equipacion.webp",
+      "width": 900,
+      "height": 900
+    },
+    {
+      "handle": "23-24-bayern-de-munich-primera-equipacion",
+      "title": "23-24 Bayern de Munich primera equipación",
+      "league": "Bundesliga",
+      "count": 46,
+      "src": "/home/showcase-23-24-bayern-de-munich-primera-equipacion.webp",
+      "width": 900,
+      "height": 900
+    }
+  ],
+  "strip": [
+    {
+      "handle": "00-01-ajax-segunda-equipacion",
+      "title": "00-01 Ajax segunda equipacion",
+      "src": "/home/strip-00-01-ajax-segunda-equipacion.webp",
+      "width": 400,
+      "height": 400
+    },
+    {
+      "handle": "00-01-barcelona-x-travis-scott-camiseta-tipo-retro",
+      "title": "00-01 Barcelona x Travis Scott camiseta tipo retro",
+      "src": "/home/strip-00-01-barcelona-x-travis-scott-camiseta-tipo-retro.webp",
+      "width": 400,
+      "height": 400
+    },
+    {
+      "handle": "00-01-barcelona-x-travis-scott-conjunto-tipo-retro-nino",
+      "title": "00-01 Barcelona x Travis Scott conjunto tipo retro niño",
+      "src": "/home/strip-00-01-barcelona-x-travis-scott-conjunto-tipo-retro-nino.webp",
+      "width": 400,
+      "height": 400
+    },
+    {
+      "handle": "00-01-bayern-de-munich-primera-equipacion",
+      "title": "00-01 Bayern de Munich primera equipación",
+      "src": "/home/strip-00-01-bayern-de-munich-primera-equipacion.webp",
+      "width": 400,
+      "height": 400
+    },
+    {
+      "handle": "00-01-bayern-de-munich-primera-equipacion-champions",
+      "title": "00-01 Bayern de Munich primera equipación champions",
+      "src": "/home/strip-00-01-bayern-de-munich-primera-equipacion-champions.webp",
+      "width": 400,
+      "height": 400
+    },
+    {
+      "handle": "00-01-boca-juniors-primera-equipacion",
+      "title": "00-01 Boca Juniors primera equipación",
+      "src": "/home/strip-00-01-boca-juniors-primera-equipacion.webp",
+      "width": 400,
+      "height": 400
+    },
+    {
+      "handle": "00-01-deportivo-la-coruna-segunda-equipacion",
+      "title": "00-01 Deportivo La Coruña segunda equipación",
+      "src": "/home/strip-00-01-deportivo-la-coruna-segunda-equipacion.webp",
+      "width": 400,
+      "height": 400
+    },
+    {
+      "handle": "00-01-liverpool-segunda-equipacion",
+      "title": "00-01 Liverpool segunda equipación",
+      "src": "/home/strip-00-01-liverpool-segunda-equipacion.webp",
+      "width": 400,
+      "height": 400
+    },
+    {
+      "handle": "00-01-mallorca-primera-equipacion",
+      "title": "00-01 Mallorca primera equipación",
+      "src": "/home/strip-00-01-mallorca-primera-equipacion.webp",
+      "width": 400,
+      "height": 400
+    },
+    {
+      "handle": "00-01-manchester-united-segunda-equipacion",
+      "title": "00-01 Manchester United segunda equipación",
+      "src": "/home/strip-00-01-manchester-united-segunda-equipacion.webp",
+      "width": 400,
+      "height": 400
+    },
+    {
+      "handle": "00-01-manchester-united-segunda-equipacion-manga-larga",
+      "title": "00-01 Manchester United segunda equipación manga larga",
+      "src": "/home/strip-00-01-manchester-united-segunda-equipacion-manga-larga.webp",
+      "width": 400,
+      "height": 400
+    },
+    {
+      "handle": "00-01-newcastle-primera-equipacion",
+      "title": "00-01 Newcastle primera equipación",
+      "src": "/home/strip-00-01-newcastle-primera-equipacion.webp",
+      "width": 400,
+      "height": 400
+    }
+  ]
+}

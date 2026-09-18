@@ -25,20 +25,27 @@ export default function ShopLayout({ children }: { children: React.ReactNode }) 
 
       <div style={{ flex: 1 }}>{children}</div>
 
-      <footer
-        className="page-width"
-        style={{
-          padding: "3rem 2rem",
-          borderTop: "1px solid rgba(255,255,255,0.1)",
-          fontSize: "1.3rem",
-          color: "rgba(255,255,255,0.55)",
-          display: "flex",
-          justifyContent: "space-between",
-          flexWrap: "wrap",
-          gap: "1rem",
-        }}
-      >
-        <span>© {new Date().getFullYear()} Fut Prov</span>
+      <footer className="page-width fp-footer">
+        <div className="fp-footer__col">
+          <span className="font-display" style={{ fontSize: "1.6rem" }}>FUT PROV</span>
+          <p>El catálogo más completo de camisetas y el acceso directo a sus proveedores.</p>
+        </div>
+        <div className="fp-footer__col">
+          <span className="fp-footer__heading">Navegación</span>
+          <Link href="/">Inicio</Link>
+          <Link href="/catalogo">Catálogo</Link>
+          <Link href="/#proveedores">Proveedores</Link>
+        </div>
+        <div className="fp-footer__col">
+          <span className="fp-footer__heading">Legal</span>
+          <Link href="/legal/aviso-legal">Aviso legal</Link>
+          <Link href="/legal/privacidad">Privacidad</Link>
+          <Link href="/legal/terminos">Términos</Link>
+          <Link href="/legal/reembolsos">Reembolsos</Link>
+        </div>
+        <div className="fp-footer__bottom">
+          <span>© {new Date().getFullYear()} Fut Prov</span>
+        </div>
       </footer>
 
       <FpAnimations />

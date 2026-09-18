@@ -1,13 +1,19 @@
 import { Fragment } from "react";
+import Image from "next/image";
+import { getCatalogStats } from "@/lib/catalog";
+import homeShowcase from "@/lib/home-showcase.json";
 
-const LEAGUES = ["LaLiga", "Premier League", "Bundesliga", "Ligue 1", "Retro", "Selecciones"];
+export async function Hero() {
+  const { productCount, leagueCount } = await getCatalogStats();
+  const strip = homeShowcase.strip;
 
-export function Hero() {
   return (
     <div className="fp-section fp-hero">
       <div className="page-width">
         <div className="fp-hero__content">
-          <span className="fp-hero__eyebrow">El catálogo más completo de camisetas</span>
+          <span className="fp-hero__eyebrow">
+            {productCount.toLocaleString("es-ES")} camisetas · {leagueCount} ligas y selecciones
+          </span>
           <h1 className="fp-hero__title">
             <span>CONSIGUE EL ACCESO</span>
             <span>AL PROVEEDOR</span>
@@ -26,12 +32,20 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="fp-marquee">
-          <div className="fp-marquee__track" aria-hidden="true">
+        <div className="fp-photostrip" aria-hidden="true">
+          <div className="fp-photostrip__track">
             {[0, 1].map((rep) => (
               <Fragment key={rep}>
-                {LEAGUES.map((item) => (
-                  <span key={`${rep}-${item}`}>{item}</span>
+                {strip.map((item, i) => (
+                  <div key={`${rep}-${item.handle}`} className="fp-photostrip__item">
+                    <Image
+                      src={item.src}
+                      alt=""
+                      width={item.width}
+                      height={item.height}
+                      loading={rep === 0 && i < 4 ? "eager" : "lazy"}
+                    />
+                  </div>
                 ))}
               </Fragment>
             ))}
