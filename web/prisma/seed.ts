@@ -1,9 +1,11 @@
 import { PrismaClient } from "@prisma/client";
+import { PrismaPg } from "@prisma/adapter-pg";
 import { readFileSync } from "fs";
 import { parse } from "csv-parse/sync";
 import path from "path";
 
-const db = new PrismaClient();
+const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
+const db = new PrismaClient({ adapter });
 
 const IMPORT_JSON = path.resolve(__dirname, "../../tools/import.json");
 const PROVEEDORES_CSV = path.resolve(__dirname, "../../tools/proveedores.csv");
