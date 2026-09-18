@@ -44,8 +44,8 @@ async function seedTags(products: RawProduct[]) {
     data: [...bySlug.entries()].map(([slug, label]) => ({ slug, label })),
     skipDuplicates: true,
   });
-  const all = await db.tag.findMany();
-  return new Map(all.map((t) => [t.slug, t.id]));
+  const all: { slug: string; id: string }[] = await db.tag.findMany();
+  return new Map(all.map((t): [string, string] => [t.slug, t.id]));
 }
 
 async function seedProducts(products: RawProduct[], tagIdBySlug: Map<string, string>) {
