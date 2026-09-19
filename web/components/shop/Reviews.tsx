@@ -33,11 +33,17 @@ const REVIEWS = [
 
 export function Reviews() {
   return (
-    <div id="resenas" className="fp-section page-width" style={{ padding: "5rem 2rem" }}>
+    <div id="resenas" className="fp-section page-width" style={{ padding: "6rem 2rem" }}>
+      <span className="fp-kicker">Opiniones</span>
       <h2 className="title text-3xl font-display">Lo que dicen nuestros clientes</h2>
-      <div className="fp-reviews" data-fp-inview>
-        {REVIEWS.map((review) => (
-          <div key={review.author} className="fp-review">
+      <div className="fp-reviews">
+        {REVIEWS.map((review, i) => (
+          <div
+            key={review.author}
+            className="fp-review"
+            data-fp-inview
+            style={{ transitionDelay: `${i * 80}ms` }}
+          >
             <div className="fp-review__stars" aria-hidden="true">
               {Array.from({ length: 5 }).map((_, i) => (
                 <span

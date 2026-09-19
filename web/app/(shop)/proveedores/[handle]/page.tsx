@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getDigitalProductByHandle } from "@/lib/digital-products";
+import { BuyButton } from "@/components/shop/BuyButton";
 
 export const revalidate = 3600;
 
@@ -55,12 +56,11 @@ export default async function ProviderPage({
         />
       )}
 
-      <button className="button button--full-width button--primary" disabled style={{ opacity: 0.5, cursor: "not-allowed" }}>
-        Comprar acceso — {formatPrice(product.priceCents)}
-      </button>
-      <p style={{ fontSize: "1.2rem", opacity: 0.5, marginTop: "0.8rem", textAlign: "center" }}>
-        Pago con tarjeta en configuración, disponible en breve.
-      </p>
+      <BuyButton
+        handle={product.handle}
+        className="button button--full-width button--primary"
+        label={`Comprar acceso — ${formatPrice(product.priceCents)}`}
+      />
     </main>
   );
 }

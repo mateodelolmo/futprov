@@ -4,7 +4,18 @@ import { FpAnimations } from "@/components/shop/FpAnimations";
 export default function ShopLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <header className="page-width" style={{ position: "sticky", top: 0, zIndex: 10, background: "#0a0a0a", borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
+      <header
+        className="page-width"
+        style={{
+          position: "sticky",
+          top: 0,
+          zIndex: 10,
+          background: "rgba(10,10,10,0.72)",
+          backdropFilter: "blur(14px)",
+          WebkitBackdropFilter: "blur(14px)",
+          borderBottom: "1px solid rgba(255,255,255,0.08)",
+        }}
+      >
         <nav
           style={{
             display: "flex",

@@ -1,21 +1,22 @@
 const STEPS = [
   {
-    title: "Elige tu camiseta",
-    text: "Recorre el catálogo y encuentra el equipo, la temporada y la equipación que quieres.",
+    title: "Explora el catálogo",
+    text: "Recorre las camisetas de todas las ligas y decide qué equipo, temporada y versión quieres.",
   },
   {
-    title: "Personalízala",
-    text: "Añade número, dorsal, nombre y parche. Cada camiseta se prepara a tu medida.",
+    title: "Compra el acceso",
+    text: "Paga con tarjeta y recibe el contacto del proveedor al instante, sin esperas.",
   },
   {
-    title: "Recíbela en casa",
-    text: "Gestionamos el pedido con el proveedor y te llega lista para jugar. Envío gratis desde 89€.",
+    title: "Pide directo al proveedor",
+    text: "Habla por WhatsApp con el proveedor y pide justo lo que quieras, al precio de fábrica.",
   },
 ];
 
 export function Steps() {
   return (
-    <div className="fp-section page-width" style={{ padding: "5rem 2rem" }}>
+    <div className="fp-section page-width" style={{ padding: "6rem 2rem" }}>
+      <span className="fp-kicker">Proceso</span>
       <h2 className="title text-3xl font-display">Cómo funciona</h2>
       <div className="fp-steps" data-fp-inview>
         <div className="fp-steps__line">

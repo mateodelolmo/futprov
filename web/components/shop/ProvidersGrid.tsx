@@ -1,4 +1,5 @@
 import { getActiveDigitalProducts } from "@/lib/digital-products";
+import { BuyButton } from "./BuyButton";
 
 function formatPrice(cents: number) {
   return (cents / 100).toLocaleString("es-ES", { style: "currency", currency: "EUR" });
@@ -14,21 +15,42 @@ const FEATURES: Record<string, string[]> = {
 
 const FEATURED_HANDLE = "proveedor-pack-3";
 
+const PHOTOS: Record<string, string> = {
+  "proveedor-ropa": "/providers/ropa.webp",
+  "proveedor-perfumes": "/providers/perfumes.webp",
+  "proveedor-vapes": "/providers/vapes.webp",
+  "guia-digital-pdf": "/providers/camisetas.webp",
+  "proveedor-pack-3": "/providers/pack.webp",
+};
+
 export async function ProvidersGrid() {
   const products = await getActiveDigitalProducts();
 
   return (
-    <div id="proveedores" className="fp-section page-width" style={{ padding: "5rem 2rem" }}>
+    <div id="proveedores" className="fp-section page-width" style={{ padding: "6rem 2rem" }}>
+      <span className="fp-kicker">Proveedores</span>
       <h2 className="title text-3xl font-display">Accesos a proveedores</h2>
       <p className="fp-catalog__subheading">
         Elige el pack que necesites y consigue el contacto al instante.
       </p>
 
-      <div className="fp-pricing" data-fp-inview>
-        {products.map((product) => {
+      <div className="fp-pricing">
+        {products.map((product, i) => {
           const featured = product.handle === FEATURED_HANDLE;
           return (
-            <div key={product.id} className={`fp-pricing__card${featured ? " fp-pricing__card--featured" : ""}`}>
+            <div
+              key={product.id}
+              data-fp-inview
+              style={{ transitionDelay: `${i * 90}ms` }}
+              className={`fp-pricing__card${featured ? " fp-pricing__card--featured" : ""}`}
+            >
+              {PHOTOS[product.handle] && (
+                <div
+                  className="fp-pricing__photo"
+                  style={{ backgroundImage: `url(${PHOTOS[product.handle]})` }}
+                  aria-hidden="true"
+                />
+              )}
               {featured && <span className="fp-pricing__badge">Más popular</span>}
               <h3 className="fp-pricing__title">{product.title}</h3>
               <div className="fp-pricing__price">
@@ -44,12 +66,11 @@ export async function ProvidersGrid() {
                   </li>
                 ))}
               </ul>
-              <a
-                href={`/proveedores/${product.handle}`}
+              <BuyButton
+                handle={product.handle}
                 className={`button button--full-width ${featured ? "button--primary" : "button--secondary"}`}
-              >
-                Conseguir acceso
-              </a>
+                label="Conseguir acceso"
+              />
             </div>
           );
         })}
