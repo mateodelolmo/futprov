@@ -1,34 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useCart } from "@/lib/cart-context";
 
 export function BuyButton({ handle, className, label }: { handle: string; className: string; label: string }) {
-  const [loading, setLoading] = useState(false);
+  const { add, has, setOpen } = useCart();
+  const inCart = has(handle);
 
-  async function buy() {
-    setLoading(true);
-    try {
-      const res = await fetch("/api/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ handle }),
-      });
-      const data = await res.json();
-      if (data.url) {
-        window.location.href = data.url;
-      } else {
-        alert(data.error ?? "No se pudo iniciar el pago");
-        setLoading(false);
-      }
-    } catch {
-      alert("No se pudo iniciar el pago");
-      setLoading(false);
-    }
+  function onClick() {
+    if (inCart) return;
+    add(handle);
+    setOpen(true);
   }
 
   return (
-    <button type="button" onClick={buy} disabled={loading} className={className}>
-      {loading ? "Redirigiendo…" : label}
+    <button type="button" onClick={onClick} disabled={inCart} className={className} aria-pressed={inCart}>
+      {inCart ? "En el carrito ✓" : label}
     </button>
   );
 }

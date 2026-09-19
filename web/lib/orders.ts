@@ -4,6 +4,20 @@ import { db } from "./db";
 
 const DELIVERY_DAYS = 30;
 
+function productIdsFromMetadata(session: Stripe.Checkout.Session): string[] {
+  const list = session.metadata?.digitalProductIds;
+  if (list) {
+    try {
+      const ids = JSON.parse(list);
+      if (Array.isArray(ids) && ids.every((id) => typeof id === "string")) return ids;
+    } catch {
+      // metadata corrupta, cae al fallback
+    }
+  }
+  const single = session.metadata?.digitalProductId;
+  return single ? [single] : [];
+}
+
 // Idempotente: puede llamarse desde el webhook y desde la pagina de gracias
 // sin duplicar el pedido (Order.stripeSessionId es unico).
 export async function fulfillCheckoutSession(session: Stripe.Checkout.Session) {
@@ -15,11 +29,11 @@ export async function fulfillCheckoutSession(session: Stripe.Checkout.Session) {
   });
   if (existing) return existing;
 
-  const digitalProductId = session.metadata?.digitalProductId;
-  if (!digitalProductId) throw new Error(`Sesion ${session.id} sin metadata.digitalProductId`);
+  const digitalProductIds = productIdsFromMetadata(session);
+  if (digitalProductIds.length === 0) throw new Error(`Sesion ${session.id} sin productos en metadata`);
 
-  const product = await db.digitalProduct.findUnique({ where: { id: digitalProductId } });
-  if (!product) throw new Error(`DigitalProduct ${digitalProductId} no existe`);
+  const products = await db.digitalProduct.findMany({ where: { id: { in: digitalProductIds } } });
+  if (products.length === 0) throw new Error(`Ningun DigitalProduct encontrado para sesion ${session.id}`);
 
   const email = session.customer_details?.email ?? session.customer_email ?? "";
 
@@ -34,24 +48,24 @@ export async function fulfillCheckoutSession(session: Stripe.Checkout.Session) {
         customerId: customer?.id,
         email,
         status: "PAID",
-        totalCents: session.amount_total ?? product.priceCents,
+        totalCents: session.amount_total ?? products.reduce((sum, p) => sum + p.priceCents, 0),
         stripeSessionId: session.id,
         stripePaymentIntentId:
           typeof session.payment_intent === "string" ? session.payment_intent : session.payment_intent?.id,
         paidAt: new Date(),
         items: {
-          create: {
+          create: products.map((product) => ({
             digitalProductId: product.id,
             titleSnapshot: product.title,
             unitCents: product.priceCents,
-          },
+          })),
         },
         deliveries: {
-          create: {
+          create: products.map((product) => ({
             digitalProductId: product.id,
             token: randomBytes(24).toString("hex"),
             expiresAt: new Date(Date.now() + DELIVERY_DAYS * 24 * 60 * 60 * 1000),
-          },
+          })),
         },
       },
       include: { deliveries: true, items: true },

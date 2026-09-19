@@ -1,9 +1,6 @@
 import { getActiveDigitalProducts } from "@/lib/digital-products";
+import { formatPrice } from "@/lib/format";
 import { BuyButton } from "./BuyButton";
-
-function formatPrice(cents: number) {
-  return (cents / 100).toLocaleString("es-ES", { style: "currency", currency: "EUR" });
-}
 
 const FEATURES: Record<string, string[]> = {
   "proveedor-ropa": ["Contacto directo por WhatsApp", "Catálogo completo de ropa", "Entrega instantánea"],

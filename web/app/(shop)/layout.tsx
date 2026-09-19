@@ -1,9 +1,16 @@
 import Link from "next/link";
 import { FpAnimations } from "@/components/shop/FpAnimations";
+import { CartButton } from "@/components/shop/CartButton";
+import { CartDrawer } from "@/components/shop/CartDrawer";
+import { CartProvider } from "@/lib/cart-context";
+import { getActiveDigitalProducts } from "@/lib/digital-products";
 
-export default function ShopLayout({ children }: { children: React.ReactNode }) {
+export default async function ShopLayout({ children }: { children: React.ReactNode }) {
+  const digitalProducts = await getActiveDigitalProducts();
+  const cartProducts = digitalProducts.map((p) => ({ handle: p.handle, title: p.title, priceCents: p.priceCents }));
+
   return (
-    <>
+    <CartProvider products={cartProducts}>
       <header
         className="page-width"
         style={{
@@ -27,9 +34,10 @@ export default function ShopLayout({ children }: { children: React.ReactNode }) 
           <Link href="/" className="font-display" style={{ fontSize: "1.6rem", letterSpacing: "0.02em" }}>
             FUT PROV
           </Link>
-          <div style={{ display: "flex", gap: "2rem", fontSize: "1.3rem" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "2rem", fontSize: "1.3rem" }}>
             <Link href="/catalogo">Catálogo</Link>
             <Link href="/#proveedores">Proveedores</Link>
+            <CartButton />
           </div>
         </nav>
       </header>
@@ -60,6 +68,7 @@ export default function ShopLayout({ children }: { children: React.ReactNode }) 
       </footer>
 
       <FpAnimations />
-    </>
+      <CartDrawer />
+    </CartProvider>
   );
 }
