@@ -15,7 +15,7 @@ const STEPS = [
 
 export function Steps() {
   return (
-    <div className="fp-section page-width" style={{ padding: "6rem 2rem" }}>
+    <div className="fp-section fp-section--pad page-width">
       <span className="fp-kicker">Proceso</span>
       <h2 className="title text-3xl font-display">Cómo funciona</h2>
       <div className="fp-steps" data-fp-inview>

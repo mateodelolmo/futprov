@@ -4,6 +4,7 @@ import { CartButton } from "@/components/shop/CartButton";
 import { CartDrawer } from "@/components/shop/CartDrawer";
 import { CartProvider } from "@/lib/cart-context";
 import { getActiveDigitalProducts } from "@/lib/digital-products";
+import { MobileNav } from "@/components/shop/MobileNav";
 
 export default async function ShopLayout({ children }: { children: React.ReactNode }) {
   const digitalProducts = await getActiveDigitalProducts();
@@ -11,33 +12,18 @@ export default async function ShopLayout({ children }: { children: React.ReactNo
 
   return (
     <CartProvider products={cartProducts}>
-      <header
-        className="page-width"
-        style={{
-          position: "sticky",
-          top: 0,
-          zIndex: 10,
-          background: "rgba(10,10,10,0.72)",
-          backdropFilter: "blur(14px)",
-          WebkitBackdropFilter: "blur(14px)",
-          borderBottom: "1px solid rgba(255,255,255,0.08)",
-        }}
-      >
-        <nav
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            padding: "1.4rem 2rem",
-          }}
-        >
-          <Link href="/" className="font-display" style={{ fontSize: "1.6rem", letterSpacing: "0.02em" }}>
+      <header className="page-width fp-nav-header">
+        <nav className="fp-nav">
+          <Link href="/" className="font-display fp-nav__logo">
             FUT PROV
           </Link>
-          <div style={{ display: "flex", alignItems: "center", gap: "2rem", fontSize: "1.3rem" }}>
+          <div className="fp-nav__links">
             <Link href="/catalogo">Catálogo</Link>
             <Link href="/#proveedores">Proveedores</Link>
+          </div>
+          <div className="fp-nav__actions">
             <CartButton />
+            <MobileNav />
           </div>
         </nav>
       </header>

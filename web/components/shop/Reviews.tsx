@@ -33,7 +33,7 @@ const REVIEWS = [
 
 export function Reviews() {
   return (
-    <div id="resenas" className="fp-section page-width" style={{ padding: "6rem 2rem" }}>
+    <div id="resenas" className="fp-section fp-section--pad page-width">
       <span className="fp-kicker">Opiniones</span>
       <h2 className="title text-3xl font-display">Lo que dicen nuestros clientes</h2>
       <div className="fp-reviews">

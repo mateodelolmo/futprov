@@ -24,7 +24,7 @@ export async function ProvidersGrid() {
   const products = await getActiveDigitalProducts();
 
   return (
-    <div id="proveedores" className="fp-section page-width" style={{ padding: "6rem 2rem" }}>
+    <div id="proveedores" className="fp-section fp-section--pad page-width">
       <span className="fp-kicker">Proveedores</span>
       <h2 className="title text-3xl font-display">Accesos a proveedores</h2>
       <p className="fp-catalog__subheading">
