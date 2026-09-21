@@ -81,7 +81,8 @@ model DigitalProduct {
   stripePriceId  String?
   deliveryType   DeliveryType
   deliveryBody   String?      @db.Text // texto/whatsapp del proveedor, nunca en código
-  fileKey        String? // clave del PDF en Blob/R2
+  fileKey        String? // URL del PDF en Vercel Blob
+  imageUrl       String? // imagen de fondo de la tarjeta en la tienda, en Vercel Blob
   active         Boolean      @default(true)
   createdAt      DateTime     @default(now())
   updatedAt      DateTime     @updatedAt

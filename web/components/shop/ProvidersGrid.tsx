@@ -41,10 +41,10 @@ export async function ProvidersGrid() {
               style={{ transitionDelay: `${i * 90}ms` }}
               className={`fp-pricing__card${featured ? " fp-pricing__card--featured" : ""}`}
             >
-              {PHOTOS[product.handle] && (
+              {(product.imageUrl || PHOTOS[product.handle]) && (
                 <div
                   className="fp-pricing__photo"
-                  style={{ backgroundImage: `url(${PHOTOS[product.handle]})` }}
+                  style={{ backgroundImage: `url(${product.imageUrl || PHOTOS[product.handle]})` }}
                   aria-hidden="true"
                 />
               )}

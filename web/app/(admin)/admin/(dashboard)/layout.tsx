@@ -14,7 +14,7 @@ export default async function AdminDashboardLayout({ children }: { children: Rea
         <div className="admin-sidebar__user">
           <div>
             <p className="admin-sidebar__email">{session.user.email}</p>
-            <p className="admin-sidebar__role">{session.user.role === "OWNER" ? "Solo lectura" : "Administrador"}</p>
+            <p className="admin-sidebar__role">{session.user.role === "OWNER" ? "Propietario" : "Administrador"}</p>
           </div>
           <form
             action={async () => {

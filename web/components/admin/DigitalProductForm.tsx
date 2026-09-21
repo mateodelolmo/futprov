@@ -41,6 +41,29 @@ export function DigitalProductForm({ product, canEdit }: { product: DigitalProdu
         <textarea name="deliveryBody" defaultValue={product.deliveryBody ?? ""} disabled={!canEdit} rows={3} />
       </label>
 
+      <label>
+        Imagen de fondo (tarjeta en la tienda)
+        {product.imageUrl && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={product.imageUrl}
+            alt=""
+            style={{ width: "120px", height: "90px", objectFit: "cover", borderRadius: "8px", marginBottom: "0.4rem" }}
+          />
+        )}
+        <input type="file" name="image" accept="image/*" disabled={!canEdit} />
+      </label>
+
+      <label>
+        PDF de entrega
+        {product.fileKey && (
+          <a href={product.fileKey} target="_blank" rel="noreferrer" style={{ display: "block", marginBottom: "0.4rem" }}>
+            Ver PDF actual
+          </a>
+        )}
+        <input type="file" name="pdf" accept="application/pdf" disabled={!canEdit} />
+      </label>
+
       {error && (
         <p role="alert" style={{ color: "var(--admin-danger)", fontSize: "0.85rem" }}>
           {error}

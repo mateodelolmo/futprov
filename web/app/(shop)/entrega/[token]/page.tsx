@@ -26,21 +26,29 @@ export default async function EntregaPage({
         <p style={{ opacity: 0.7 }}>
           Este enlace caducó. Escríbenos y te lo reenviamos.
         </p>
-      ) : delivery.digitalProduct.deliveryType === "CONTACT" ? (
-        delivery.digitalProduct.deliveryBody ? (
-          <div
-            style={{ fontSize: "1.5rem", lineHeight: 1.7 }}
-            dangerouslySetInnerHTML={{ __html: delivery.digitalProduct.deliveryBody }}
-          />
-        ) : (
-          <p style={{ opacity: 0.7 }}>Aún no hay contacto cargado para este acceso. Escríbenos.</p>
-        )
-      ) : delivery.digitalProduct.fileKey ? (
-        <a href={delivery.digitalProduct.fileKey} className="button">
-          Descargar PDF
-        </a>
       ) : (
-        <p style={{ opacity: 0.7 }}>El PDF aún no está disponible. Escríbenos y te lo enviamos.</p>
+        <>
+          {delivery.digitalProduct.deliveryBody && (
+            <div
+              style={{ fontSize: "1.5rem", lineHeight: 1.7 }}
+              dangerouslySetInnerHTML={{ __html: delivery.digitalProduct.deliveryBody }}
+            />
+          )}
+          {delivery.digitalProduct.fileKey && (
+            <a
+              href={delivery.digitalProduct.fileKey}
+              target="_blank"
+              rel="noreferrer"
+              className="button"
+              style={{ marginTop: delivery.digitalProduct.deliveryBody ? "1.5rem" : 0, display: "inline-block" }}
+            >
+              Descargar PDF
+            </a>
+          )}
+          {!delivery.digitalProduct.deliveryBody && !delivery.digitalProduct.fileKey && (
+            <p style={{ opacity: 0.7 }}>Aún no hay contenido cargado para este acceso. Escríbenos.</p>
+          )}
+        </>
       )}
     </main>
   );
