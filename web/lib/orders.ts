@@ -1,6 +1,7 @@
 import { randomBytes } from "crypto";
 import type Stripe from "stripe";
 import { db } from "./db";
+import { sendDeliveryEmail } from "./mail";
 
 const DELIVERY_DAYS = 30;
 
@@ -68,8 +69,9 @@ export async function fulfillCheckoutSession(session: Stripe.Checkout.Session) {
           })),
         },
       },
-      include: { deliveries: true, items: true },
+      include: { deliveries: { include: { digitalProduct: true } }, items: true },
     });
+    await sendDeliveryEmail(order);
     return order;
   } catch (err) {
     // Carrera: otra llamada (webhook vs pagina de gracias) ya lo creo entre el find y el create.

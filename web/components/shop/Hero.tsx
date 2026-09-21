@@ -1,7 +1,11 @@
 import { getCatalogStats } from "@/lib/catalog";
 
-export async function Hero() {
+export async function Hero({ headline }: { headline?: string }) {
   const { productCount, leagueCount } = await getCatalogStats();
+  const words = (headline ?? "EL CONTACTO DEL PROVEEDOR").split(" ");
+  const mid = Math.ceil(words.length / 2);
+  const line1 = words.slice(0, mid).join(" ");
+  const line2 = words.slice(mid).join(" ");
 
   return (
     <div className="fp-section fp-hero fp-hero--solo">
@@ -11,8 +15,8 @@ export async function Hero() {
             Acceso directo · sin intermediarios · entrega al instante
           </span>
           <h1 className="fp-hero__title">
-            <span>EL CONTACTO</span>
-            <span>DEL PROVEEDOR</span>
+            <span>{line1}</span>
+            {line2 && <span>{line2}</span>}
           </h1>
           <p className="fp-hero__subtitle">
             Consigue el WhatsApp directo del proveedor de ropa, perfumes o vapes y pide tú mismo
