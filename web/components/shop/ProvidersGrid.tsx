@@ -1,6 +1,7 @@
 import { getActiveDigitalProducts } from "@/lib/digital-products";
 import { formatPrice } from "@/lib/format";
 import { BuyButton } from "./BuyButton";
+import { PaymentMethods } from "./PaymentMethods";
 
 const FEATURES: Record<string, string[]> = {
   "proveedor-ropa": ["Contacto directo por WhatsApp", "Catálogo completo de ropa", "Entrega instantánea"],
@@ -13,9 +14,9 @@ const FEATURES: Record<string, string[]> = {
 const FEATURED_HANDLE = "proveedor-pack-3";
 
 const PHOTOS: Record<string, string> = {
-  "proveedor-ropa": "/providers/ropa.webp",
-  "proveedor-perfumes": "/providers/perfumes.webp",
-  "proveedor-vapes": "/providers/vapes.webp",
+  "proveedor-ropa": "/providers/ropa.png",
+  "proveedor-perfumes": "/providers/perfumes.png",
+  "proveedor-vapes": "/providers/vapes.png",
   "guia-digital-pdf": "/providers/camisetas.webp",
   "proveedor-pack-3": "/providers/pack.webp",
 };
@@ -34,6 +35,10 @@ export async function ProvidersGrid() {
       <div className="fp-pricing">
         {products.map((product, i) => {
           const featured = product.handle === FEATURED_HANDLE;
+          const discountPct =
+            product.compareAtCents && product.compareAtCents > product.priceCents
+              ? Math.round((1 - product.priceCents / product.compareAtCents) * 100)
+              : null;
           return (
             <div
               key={product.id}
@@ -42,13 +47,16 @@ export async function ProvidersGrid() {
               className={`fp-pricing__card${featured ? " fp-pricing__card--featured" : ""}`}
             >
               {(product.imageUrl || PHOTOS[product.handle]) && (
-                <div
-                  className="fp-pricing__photo"
-                  style={{ backgroundImage: `url(${product.imageUrl || PHOTOS[product.handle]})` }}
-                  aria-hidden="true"
-                />
+                <div className="fp-pricing__image">
+                  {featured && <span className="fp-pricing__badge">Más popular</span>}
+                  {discountPct && (
+                    <span className="fp-pricing__badge fp-pricing__badge--sale">
+                      OFERTA -{discountPct}%
+                    </span>
+                  )}
+                  <img src={product.imageUrl || PHOTOS[product.handle]} alt="" />
+                </div>
               )}
-              {featured && <span className="fp-pricing__badge">Más popular</span>}
               <h3 className="fp-pricing__title">{product.title}</h3>
               <div className="fp-pricing__price">
                 {formatPrice(product.priceCents)}
@@ -68,6 +76,7 @@ export async function ProvidersGrid() {
                 className={`button button--full-width ${featured ? "button--primary" : "button--secondary"}`}
                 label="Conseguir acceso"
               />
+              <PaymentMethods className="fp-pricing__payments" />
             </div>
           );
         })}

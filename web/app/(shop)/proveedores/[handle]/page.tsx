@@ -30,20 +30,12 @@ export default async function ProviderPage({
   if (!product || !product.active) notFound();
 
   return (
-    <main className="page-width" style={{ padding: "4rem 2rem", maxWidth: "48rem", margin: "0 auto" }}>
+    <main className="page-width fp-doc fp-doc--narrow">
       <h1 className="text-3xl font-display mb-2">{product.title}</h1>
       <div className="fp-provider-card__price" style={{ marginBottom: "1.6rem" }}>
         {formatPrice(product.priceCents)}
         {product.compareAtCents && (
-          <span
-            style={{
-              marginLeft: "0.6rem",
-              fontSize: "1.3rem",
-              opacity: 0.5,
-              textDecoration: "line-through",
-              fontWeight: 400,
-            }}
-          >
+          <span className="fp-doc__compare">
             {formatPrice(product.compareAtCents)}
           </span>
         )}
@@ -51,7 +43,8 @@ export default async function ProviderPage({
 
       {product.description && (
         <div
-          style={{ fontSize: "1.4rem", lineHeight: 1.6, opacity: 0.85, marginBottom: "2rem" }}
+          className="fp-prose"
+          style={{ fontSize: "1.4rem", marginBottom: "2rem" }}
           dangerouslySetInnerHTML={{ __html: product.description }}
         />
       )}

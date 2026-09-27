@@ -14,7 +14,7 @@ export default async function GraciasPage({
 
   if (!session_id) {
     return (
-      <main className="page-width" style={{ padding: "6rem 2rem", maxWidth: "40rem", margin: "0 auto", textAlign: "center" }}>
+      <main className="page-width fp-doc fp-doc--center">
         <h1 className="text-3xl font-display mb-2">Pedido no encontrado</h1>
         <Link href="/#proveedores" className="button" style={{ marginTop: "2rem" }}>Volver a proveedores</Link>
       </main>
@@ -25,9 +25,9 @@ export default async function GraciasPage({
 
   if (session.payment_status !== "paid") {
     return (
-      <main className="page-width" style={{ padding: "6rem 2rem", maxWidth: "40rem", margin: "0 auto", textAlign: "center" }}>
+      <main className="page-width fp-doc fp-doc--center">
         <h1 className="text-3xl font-display mb-2">Pago pendiente</h1>
-        <p style={{ opacity: 0.7 }}>Si acabas de pagar, recarga esta página en unos segundos.</p>
+        <p className="fp-prose">Si acabas de pagar, recarga esta página en unos segundos.</p>
       </main>
     );
   }
@@ -35,10 +35,10 @@ export default async function GraciasPage({
   const order = await fulfillCheckoutSession(session);
 
   return (
-    <main className="page-width" style={{ padding: "6rem 2rem", maxWidth: "40rem", margin: "0 auto", textAlign: "center" }}>
+    <main className="page-width fp-doc fp-doc--center">
       <ClearCartOnMount />
       <h1 className="text-3xl font-display mb-2">¡Pago confirmado!</h1>
-      <p style={{ opacity: 0.7, marginBottom: "2.4rem" }}>
+      <p className="fp-prose" style={{ marginBottom: "2.4rem" }}>
         Aquí tienes {order && order.deliveries.length > 1 ? "tus accesos" : "tu acceso"}. Guarda
         {order && order.deliveries.length > 1 ? " estos enlaces, también válidos" : " este enlace, también válido"} durante 30 días desde tu email si lo añadimos.
       </p>

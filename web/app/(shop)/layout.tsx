@@ -5,6 +5,7 @@ import { CartDrawer } from "@/components/shop/CartDrawer";
 import { CartProvider } from "@/lib/cart-context";
 import { getActiveDigitalProducts } from "@/lib/digital-products";
 import { MobileNav } from "@/components/shop/MobileNav";
+import { PaymentMethods } from "@/components/shop/PaymentMethods";
 
 export default async function ShopLayout({ children }: { children: React.ReactNode }) {
   const digitalProducts = await getActiveDigitalProducts();
@@ -28,11 +29,11 @@ export default async function ShopLayout({ children }: { children: React.ReactNo
         </nav>
       </header>
 
-      <div style={{ flex: 1 }}>{children}</div>
+      <div className="fp-main">{children}</div>
 
       <footer className="page-width fp-footer">
         <div className="fp-footer__col">
-          <span className="font-display" style={{ fontSize: "1.6rem" }}>FUT PROV</span>
+          <span className="font-display fp-footer__logo">FUT PROV</span>
           <p>El catálogo más completo de camisetas y el acceso directo a sus proveedores.</p>
         </div>
         <div className="fp-footer__col">
@@ -50,6 +51,7 @@ export default async function ShopLayout({ children }: { children: React.ReactNo
         </div>
         <div className="fp-footer__bottom">
           <span>© {new Date().getFullYear()} Fut Prov</span>
+          <PaymentMethods />
         </div>
       </footer>
 

@@ -25,10 +25,11 @@ export default async function LegalPage({
   if (!page) notFound();
 
   return (
-    <main className="page-width" style={{ padding: "4rem 2rem", maxWidth: "48rem", margin: "0 auto" }}>
+    <main className="page-width fp-doc fp-doc--narrow">
       <h1 className="text-3xl font-display mb-2">{page.title}</h1>
       <div
-        style={{ fontSize: "1.4rem", lineHeight: 1.7, opacity: 0.85, marginTop: "1.6rem" }}
+        className="fp-prose"
+        style={{ fontSize: "1.4rem", lineHeight: 1.7, marginTop: "1.6rem" }}
         dangerouslySetInnerHTML={{ __html: page.body }}
       />
     </main>

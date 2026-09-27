@@ -1,7 +1,7 @@
 import { db } from "./db";
 
 export const SITE_SETTING_DEFAULTS = {
-  offerbar_text: "¡Oferta especial solo hoy! Acceso al proveedor con descuento. Termina en:",
+  offerbar_text: "¡Oferta especial! Acceso al proveedor con descuento — entrega instantánea.",
   hero_headline: "EL CONTACTO DEL PROVEEDOR",
 } as const;
 

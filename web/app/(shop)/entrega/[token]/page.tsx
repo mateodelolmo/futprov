@@ -19,17 +19,18 @@ export default async function EntregaPage({
   const expired = delivery.expiresAt < new Date();
 
   return (
-    <main className="page-width" style={{ padding: "6rem 2rem", maxWidth: "40rem", margin: "0 auto" }}>
+    <main className="page-width fp-doc fp-doc--narrow">
       <h1 className="text-3xl font-display mb-2">{delivery.digitalProduct.title}</h1>
 
       {expired ? (
-        <p style={{ opacity: 0.7 }}>
+        <p className="fp-prose">
           Este enlace caducó. Escríbenos y te lo reenviamos.
         </p>
       ) : (
         <>
           {delivery.digitalProduct.deliveryBody && (
             <div
+              className="fp-prose"
               style={{ fontSize: "1.5rem", lineHeight: 1.7 }}
               dangerouslySetInnerHTML={{ __html: delivery.digitalProduct.deliveryBody }}
             />
@@ -46,7 +47,7 @@ export default async function EntregaPage({
             </a>
           )}
           {!delivery.digitalProduct.deliveryBody && !delivery.digitalProduct.fileKey && (
-            <p style={{ opacity: 0.7 }}>Aún no hay contenido cargado para este acceso. Escríbenos.</p>
+            <p className="fp-prose">Aún no hay contenido cargado para este acceso. Escríbenos.</p>
           )}
         </>
       )}

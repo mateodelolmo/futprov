@@ -1,10 +1,33 @@
 @import "tailwindcss";
 @import "../styles/fp.css";
 
+html {
+  font-size: 62.5%;
+}
+
 :root {
   --background: #0a0a0a;
   --foreground: #f5f5f5;
+
+  --fp-bg: #0a0a0a;
+  --fp-surface: #111111;
+  --fp-surface-raised: #161616;
+  --fp-surface-sunken: #0d0d0d;
+  --fp-border: rgba(255, 255, 255, 0.12);
+  --fp-border-strong: rgba(255, 255, 255, 0.28);
+  --fp-text: #f5f5f5;
+  --fp-text-muted: rgba(255, 255, 255, 0.72);
+  --fp-text-subtle: rgba(255, 255, 255, 0.55);
   --fp-accent: #0090d4;
+  --fp-accent-hover: #00a6f0;
+  --fp-accent-ink: #0a0a0a;
+  --fp-accent-text: #4cc3ff;
+  --fp-sale: #ff3b3b;
+  --fp-sale-ink: #ffffff;
+  --fp-on-photo: #ffffff;
+  --fp-photo-scrim: rgba(0, 0, 0, 0.78);
+  --fp-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --fp-shadow-md: 0 18px 40px -24px rgba(0, 144, 212, 0.5);
 }
 
 @theme inline {
@@ -19,6 +42,14 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-size: 1.6rem;
+}
+
+.page-width {
+  width: 100%;
+  max-width: 120rem;
+  margin-inline: auto;
+  padding-inline: clamp(1.2rem, 4vw, 2.4rem);
 }
 
 .font-display {

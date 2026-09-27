@@ -26,9 +26,9 @@ export default async function CatalogoPage({
   ]);
 
   return (
-    <main className="page-width" style={{ padding: "4rem 2rem" }}>
+    <main className="page-width fp-doc">
       <h1 className="title text-3xl font-display mb-2">Catálogo</h1>
-      <p className="fp-catalog__subheading text-white/60">
+      <p className="fp-catalog__subheading">
         {total} camisetas disponibles. Elige la tuya y accede al proveedor.
       </p>
 
@@ -97,11 +97,7 @@ export default async function CatalogoPage({
       )}
 
       {pageCount > 1 && (
-        <nav
-          className="fp-catalog__loadmore"
-          style={{ gap: "0.8rem" }}
-          aria-label="Paginación"
-        >
+        <nav className="fp-catalog__loadmore" aria-label="Paginación">
           {page > 1 && (
             <Link className="fp-chip" href={buildHref({ liga, q, page: page - 1 })}>
               Anterior
